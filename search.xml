@@ -4,6 +4,221 @@
   
     
     <entry>
+      <title>CentOS安装Hadoop</title>
+      <link href="/2022/09/23/CentOS%E5%AE%89%E8%A3%85Hadoop/"/>
+      <url>/2022/09/23/CentOS%E5%AE%89%E8%A3%85Hadoop/</url>
+      
+        <content type="html"><![CDATA[<h1 id="CentOS安装Hadoop"><a href="#CentOS安装Hadoop" class="headerlink" title="CentOS安装Hadoop"></a>CentOS安装Hadoop</h1><h2 id="首先换源"><a href="#首先换源" class="headerlink" title="首先换源"></a>首先换源</h2><p><a href="../CentOS_yum%E6%8D%A2%E6%BA%90/index.html">CentOS_yum换源</a></p><h1 id="1-安装java"><a href="#1-安装java" class="headerlink" title="1. 安装java"></a>1. 安装java</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum install java-1.8.0-openjdk-devel.x86_64<br></code></pre></td></tr></table></figure><h1 id="2-安装Hadoop"><a href="#2-安装Hadoop" class="headerlink" title="2. 安装Hadoop"></a>2. 安装Hadoop</h1><h3 id="下载hadoop安装包-推荐3-x版本"><a href="#下载hadoop安装包-推荐3-x版本" class="headerlink" title="下载hadoop安装包(推荐3.x版本)"></a>下载hadoop安装包(推荐3.x版本)</h3><p>这里使用中科大镜像</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://mirrors.ustc.edu.cn/apache/hadoop/common/hadoop-2.10.2/hadoop-2.10.2.tar.gz<br></code></pre></td></tr></table></figure><p>3.x版本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://mirrors.ustc.edu.cn/apache/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz<br></code></pre></td></tr></table></figure><p>更多版本: </p><p><a href="https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz">https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common</a></p><p><a href="https://mirrors.ustc.edu.cn/apache/hadoop/common">https://mirrors.ustc.edu.cn/apache/hadoop/common</a></p><p>官网(速度极慢)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz<br></code></pre></td></tr></table></figure><h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo tar -zxvf hadoop-3.3.4.tar.gz -C /usr/local<br></code></pre></td></tr></table></figure><h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p>编辑配置文件, </p><p>vim 命令模式操作 G跳转到末尾行, o从下一行行首开始编辑</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vi /etc/profile<br></code></pre></td></tr></table></figure><p>将以下内容添加到profile末尾</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># JAVA ENVs</span><br><span class="hljs-built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$JAVA_HOME</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=<span class="hljs-variable">$JAVA_HOME</span>/lib:<span class="hljs-variable">$JRE_HOME</span>/lib:<span class="hljs-variable">$CLASSPATH</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$JRE_HOME</span>/bin:<span class="hljs-variable">$PATH</span><br><span class="hljs-comment"># HADOOP_HOME </span><br><span class="hljs-built_in">export</span> HADOOP_HOME=/usr/local/hadoop-3.3.4<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HADOOP_HOME</span>/bin <br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HADOOP_HOME</span>/sbin<br></code></pre></td></tr></table></figure><p>使配置文件生效</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure><p>编辑hadoop-env</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vi <span class="hljs-variable">$HADOOP_HOME</span>/etc/hadoop/hadoop-env.sh<br></code></pre></td></tr></table></figure><p>在末尾添加</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk<br></code></pre></td></tr></table></figure><h3 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hadoop version<br></code></pre></td></tr></table></figure><h1 id="3-HDFS配置"><a href="#3-HDFS配置" class="headerlink" title="3. HDFS配置"></a>3. HDFS配置</h1><p>参考链接 </p><p><a href="https://www.runoob.com/w3cnote/hdfs-setup.html">4.0 HDFS 配置与使用 | 菜鸟教程</a></p><p>切换到配置文件目录</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> <span class="hljs-variable">$HADOOP_HOME</span>/etc/hadoop<br></code></pre></td></tr></table></figure><p>在 core-site.xml 中，我们在 标签下添加属性：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.defaultFS<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hdfs://<span class="hljs-tag">&lt;<span class="hljs-name">你的IP</span>&gt;</span>:9000<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><p>在 hdfs-site.xml 中的 标签下添加属性：</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>dfs.replication<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure><p>格式化文件结构：</p><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">hdfs namenode -<span class="hljs-built_in">format</span><br></code></pre></td></tr></table></figure><h3 id="启动-HDFS："><a href="#启动-HDFS：" class="headerlink" title="启动 HDFS："></a>启动 HDFS：</h3><p>生成 SSH 密钥：</p><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arcade">cd ~<span class="hljs-regexp">/.ssh/</span> <br>ssh-keygen -t rsa<br></code></pre></td></tr></table></figure><p>这里可以一直按回车直到生成结束。</p><p>然后将生成的密钥添加到信任列表：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> id_rsa.pub &gt;&gt; authorized_keys<br></code></pre></td></tr></table></figure><p>修改文件权限</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> 600 ./authorized_keys<br></code></pre></td></tr></table></figure><p>启动hdfs</p><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-literal">start</span>-dfs.sh<br></code></pre></td></tr></table></figure><h3 id="Hadoop常用端口说明"><a href="#Hadoop常用端口说明" class="headerlink" title="Hadoop常用端口说明"></a>Hadoop常用端口说明</h3><p><a href="https://blog.csdn.net/zhou4411781/article/details/118882276">hadoop常用端口号_南洲.的博客-CSDN博客_hdfs默认端口是8020还是9000</a></p><p>hadoop2.x<br>HDFS Namenode内部通常端口:8020&#x2F;9000<br>HDFS Namenode对用户的查询端口:50070<br>Yarn查看任务运行情况的:8088<br>历史服务器:19888</p><p>hadoop3.x<br>HDFS Namenode内部通常端口:8020&#x2F;9000&#x2F;9820<br>HDFS Namenode对用户的査询端口:9870<br>Yarn查看任务运行情况的:8088<br>历史服务器:19888</p><h1 id="docker安装hadoop"><a href="#docker安装hadoop" class="headerlink" title="docker安装hadoop"></a>docker安装hadoop</h1><p><a href="https://www.runoob.com/w3cnote/hadoop-setup.html">2.0 Hadoop 运行环境 | 菜鸟教程</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+          <category> CentOS </category>
+          
+          <category> Hadoop </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安装配置 </tag>
+            
+            <tag> CentOS </tag>
+            
+            <tag> Hadoop </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CentOS_yum换源</title>
+      <link href="/2022/09/23/CentOS_yum%E6%8D%A2%E6%BA%90/"/>
+      <url>/2022/09/23/CentOS_yum%E6%8D%A2%E6%BA%90/</url>
+      
+        <content type="html"><![CDATA[<h1 id="CentOS-yum换源"><a href="#CentOS-yum换源" class="headerlink" title="CentOS_yum换源"></a>CentOS_yum换源</h1><h3 id="首先安装-wget"><a href="#首先安装-wget" class="headerlink" title="首先安装 wget"></a>首先安装 <code>wget</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum install wget -y<br></code></pre></td></tr></table></figure><h3 id="备份旧源"><a href="#备份旧源" class="headerlink" title="备份旧源"></a>备份旧源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo_bak<br></code></pre></td></tr></table></figure><h3 id="获取-repo"><a href="#获取-repo" class="headerlink" title="获取 repo"></a>获取 repo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># epel源</span><br>sudo yum -y install epel-release<br><br><span class="hljs-comment"># 网易源</span><br>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo<br><br><span class="hljs-comment"># 阿里源</span><br>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo<br><br><span class="hljs-comment"># centos8 curl方式</span><br>curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-vault-8.5.2111.repo<br></code></pre></td></tr></table></figure><h3 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum clean all<br></code></pre></td></tr></table></figure><h3 id="缓存软件包信息"><a href="#缓存软件包信息" class="headerlink" title="缓存软件包信息"></a>缓存软件包信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum makecache<br></code></pre></td></tr></table></figure><h3 id="更新软件包"><a href="#更新软件包" class="headerlink" title="更新软件包"></a>更新软件包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum update -y<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+          <category> 换源 </category>
+          
+          <category> CentOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 配置 </tag>
+            
+            <tag> CentOS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Jupyter配置</title>
+      <link href="/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/"/>
+      <url>/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Jupyter配置"><a href="#Jupyter配置" class="headerlink" title="Jupyter配置"></a>Jupyter配置</h1><h2 id="Termux下"><a href="#Termux下" class="headerlink" title="Termux下"></a>Termux下</h2><p>安装 <code>libzmq</code></p><blockquote><p>之前报错就是因为没有libzmq，pip安装的时候没法编译</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install libzmq<br></code></pre></td></tr></table></figure><h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyte<br></code></pre></td></tr></table></figure><h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jupyter notebook --generate-config<br></code></pre></td></tr></table></figure><p>默认生成在 <code>~/.jupytercd ~/.jupyter</code> </p><h2 id="使用-ipython-生成密匙"><a href="#使用-ipython-生成密匙" class="headerlink" title="使用 ipython 生成密匙"></a>使用 <code>ipython</code> 生成密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">from notebook.auth import passwdpasswd()<br></code></pre></td></tr></table></figure><p>按提示输入密码，复制生成的字符串(例如’sha1:aabbcc00’)</p><h2 id="编辑-jupyter-notebook-config-py-添加刚刚生成的密匙"><a href="#编辑-jupyter-notebook-config-py-添加刚刚生成的密匙" class="headerlink" title="编辑 jupyter_notebook_config.py 添加刚刚生成的密匙"></a>编辑 <code>jupyter_notebook_config.py</code> 添加刚刚生成的密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">c.NotebookApp.password = <span class="hljs-string">&#x27;sha1:aabbcc00&#x27;</span><br><span class="hljs-comment"># 允许任何ip访问</span><br>c.NotebookApp.ip=<span class="hljs-string">&#x27;*&#x27;</span> <br><span class="hljs-comment"># 禁用自启动浏览器</span><br>c.NotebookApp.open_browser = False <br><span class="hljs-comment"># 设置端口</span><br>c.NotebookApp.port =8888 <br><br></code></pre></td></tr></table></figure><h3 id="（以下为个人配置）设置别名"><a href="#（以下为个人配置）设置别名" class="headerlink" title="（以下为个人配置）设置别名"></a>（以下为个人配置）设置别名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> ~/.jupyter/leo<br>vi ~/.zshrc<br><span class="hljs-built_in">alias</span> myjupyter=<span class="hljs-string">&quot;jupyter notebook --notebook-dir /data/data/com.termux/files/home/.jupyter/leo &amp; sleep 1; termux-open http://127.0.0.1:8880”</span><br></code></pre></td></tr></table></figure><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter_contrib_nbextensions &amp;&amp; jupyter contrib nbextension install<br></code></pre></td></tr></table></figure><p><img src="/img/Jupyter_plugins.png" alt="plugins"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安装配置 </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> Jupyter </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python_pip换源</title>
+      <link href="/2022/09/23/Python_pip%E6%8D%A2%E6%BA%90/"/>
+      <url>/2022/09/23/Python_pip%E6%8D%A2%E6%BA%90/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Python-pip换源"><a href="#Python-pip换源" class="headerlink" title="Python_pip换源"></a>Python_pip换源</h1><h3 id="pip国内的一些镜像"><a href="#pip国内的一些镜像" class="headerlink" title="pip国内的一些镜像"></a>pip国内的一些镜像</h3><p>阿里云</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/pypi/</span>simple/<br></code></pre></td></tr></table></figure><p>中国科技大学</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>pypi.mirrors.ustc.edu.cn<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><p>豆瓣(douban)</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>pypi.douban.com<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><p>清华大学</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>pypi.tuna.tsinghua.edu.cn<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><h2 id="linux"><a href="#linux" class="headerlink" title="linux:"></a>linux:</h2><p>修改 ~&#x2F;.pip&#x2F;pip.conf (没有就创建一个)， 内容如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[global]<br>index-url = [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple)<br></code></pre></td></tr></table></figure><h2 id="windows"><a href="#windows" class="headerlink" title="windows:"></a>windows:</h2><p>直接在user目录中创建一个pip目录，如：C:\Users\leo\pip，在pip 目录下新建文件pip.ini，内容如下</p><p>或者：win+R 打开用户目录%HOMEPATH%，在此目录下创建 pip 文件夹，在 pip 目录下创建 pip.ini 文件, 内容如下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">[global]<br><span class="hljs-built_in">timeout</span> = 6000<br>index-url = [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple)<br>trusted-host = [pypi.tuna.tsinghua.edu.cn](http://pypi.tuna.tsinghua.edu.cn/)<br></code></pre></td></tr></table></figure><h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install --upgrade pip wheels setuptools<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+          <category> 换源 </category>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 配置 </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Ubuntu_apt换源</title>
+      <link href="/2022/09/23/Ubuntu_apt%E6%8D%A2%E6%BA%90/"/>
+      <url>/2022/09/23/Ubuntu_apt%E6%8D%A2%E6%BA%90/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Ubuntu-apt换源"><a href="#Ubuntu-apt换源" class="headerlink" title="Ubuntu_apt换源"></a>Ubuntu_apt换源</h1><h2 id="备份apt配置文件："><a href="#备份apt配置文件：" class="headerlink" title="备份apt配置文件："></a><strong>备份apt配置文件：</strong></h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">cp <span class="hljs-regexp">/etc/</span>apt<span class="hljs-regexp">/sources.list /</span>etc<span class="hljs-regexp">/apt/</span>sources.list.bak<br></code></pre></td></tr></table></figure><h2 id="编辑apt配置文件："><a href="#编辑apt配置文件：" class="headerlink" title="编辑apt配置文件："></a><strong>编辑apt配置文件：</strong></h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/etc/</span>apt/sources.list<br></code></pre></td></tr></table></figure><h2 id="查看版本代号"><a href="#查看版本代号" class="headerlink" title="查看版本代号"></a>查看版本代号</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">lsb_release -a<br></code></pre></td></tr></table></figure><table><thead><tr><th>ubuntu 12.04</th><th>precise</th></tr></thead><tbody><tr><td>ubuntu 14.04</td><td>trusty</td></tr><tr><td>ubuntu 15.04</td><td>vivid</td></tr><tr><td>ubuntu 15.10</td><td>wily</td></tr><tr><td>ubuntu 16.04</td><td>xenial</td></tr><tr><td>ubuntu 18.04</td><td>bionic</td></tr><tr><td>ubuntu 20.04</td><td>focal</td></tr></tbody></table><h2 id="ubuntu-20"><a href="#ubuntu-20" class="headerlink" title="ubuntu 20"></a>ubuntu 20</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment"># 中科大源</span><br>deb https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-updates main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-updates main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-backports main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-backports main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-security main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-security main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-proposed main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.ustc.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-proposed main restricted universe multiverse<br><span class="hljs-comment"># 清华源</span><br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-updates main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-updates main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-backports main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-backports main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-security main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-security main restricted universe multiverse<br>deb https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-proposed main restricted universe multiverse<br>deb-src https:<span class="hljs-regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="hljs-regexp">/ubuntu/</span> focal-proposed main restricted universe<br></code></pre></td></tr></table></figure><h2 id="ubuntu-18"><a href="#ubuntu-18" class="headerlink" title="ubuntu 18"></a>ubuntu 18</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 中科大</span><br>deb https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse<br>deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse<br>deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse<br>deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse<br>deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-security main restricted universe multiverse<br>deb https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse<br>deb-src https://mirrors.ustc.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse<br><br><span class="hljs-comment"># 清华</span><br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse<br>deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse<br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse<br>deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse<br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse<br>deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse<br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse<br>deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse<br>deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe multiverse<br>deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-proposed main restricted universe<br><br><span class="hljs-comment"># 阿里云</span><br>deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse<br>deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse<br>deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse<br>deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse<br>deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse<br>deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+          <category> 换源 </category>
+          
+          <category> Ubuntu </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 配置 </tag>
+            
+            <tag> Ubuntu </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Golang安装与配置</title>
+      <link href="/2022/09/23/Golang%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
+      <url>/2022/09/23/Golang%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Golang安装与配置"><a href="#Golang安装与配置" class="headerlink" title="Golang安装与配置"></a>Golang安装与配置</h1><h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><p>访问 <a href="https://studygolang.com/dl">Go语言中文网</a> 进行下载</p><h1 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h1><ol><li>下载安装包</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget &lt;https://studygolang.com/dl/golang/go1.19.linux-amd64.tar.gz&gt;<br></code></pre></td></tr></table></figure><ol><li>解压安装包至 &#x2F;usr&#x2F;local</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -C /usr/local -xzf go1.19.linux-amd64.tar.gz<br></code></pre></td></tr></table></figure><ol><li>配置环境变量</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.bashrc<br><br><span class="hljs-built_in">export</span> GOROOT=/usr/local/go<br><span class="hljs-built_in">export</span> GOPATH=/usr/local/projects/go<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$GOROOT</span>/bin:<span class="hljs-variable">$GPPATH</span>/bin<br><br><span class="hljs-built_in">source</span> ~/.bashrc<br><br><span class="hljs-comment"># 如果使用zsh 则此处bashrc变为zshrc</span><br></code></pre></td></tr></table></figure><ol><li>设置代理</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">go <span class="hljs-built_in">env</span> -w GOPROXY=https://goproxy.io,direct<br>go <span class="hljs-built_in">env</span> -w GO111MODULE=on<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+          <category> Golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安装配置 </tag>
+            
+            <tag> Golang </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ZSH配置</title>
+      <link href="/2022/09/23/ZSH%20%E9%85%8D%E7%BD%AE/"/>
+      <url>/2022/09/23/ZSH%20%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ZSH配置"><a href="#ZSH配置" class="headerlink" title="ZSH配置"></a>ZSH配置</h1><h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># ubuntu下</span><br>apt install -y zsh<br><span class="hljs-comment"># centos下</span><br>yum install -y zsh<br></code></pre></td></tr></table></figure><h3 id="设置zsh为默认shell"><a href="#设置zsh为默认shell" class="headerlink" title="设置zsh为默认shell"></a>设置zsh为默认shell</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chsh -s /bin/zsh<br></code></pre></td></tr></table></figure><h3 id="安装git-wget"><a href="#安装git-wget" class="headerlink" title="安装git, wget"></a>安装git, wget</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># ubuntu下</span><br>apt install -y git wget<br><span class="hljs-comment"># centos下</span><br>yum install -y git wget<br></code></pre></td></tr></table></figure><h2 id="安装-oh-my-zsh"><a href="#安装-oh-my-zsh" class="headerlink" title="安装 oh-my-zsh"></a>安装 oh-my-zsh</h2><p>使用wget获取安装脚本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh<br></code></pre></td></tr></table></figure><p>找到以下部分</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Default settings</span><br>ZSH=<span class="hljs-variable">$&#123;ZSH:-~/.oh-my-zsh&#125;</span><br>REPO=<span class="hljs-variable">$&#123;REPO:-ohmyzsh/ohmyzsh&#125;</span><br>REMOTE=<span class="hljs-variable">$&#123;REMOTE:-https://github.com/<span class="hljs-variable">$&#123;REPO&#125;</span>.git&#125;</span><br>BRANCH=<span class="hljs-variable">$&#123;BRANCH:-master&#125;</span><br></code></pre></td></tr></table></figure><p>把中间两行修改为：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">REPO=<span class="hljs-variable">$&#123;REPO:-mirrors/oh-my-zsh&#125;</span><br>REMOTE=<span class="hljs-variable">$&#123;REMOTE:-https://gitee.com/<span class="hljs-variable">$&#123;REPO&#125;</span>.git&#125;</span><br></code></pre></td></tr></table></figure><p><code>:wq!</code> 保存 <code>sh install.sh</code> 执行</p><h1 id="2-配置"><a href="#2-配置" class="headerlink" title="2. 配置"></a>2. 配置</h1><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>编辑 <code>~/.zshrc</code></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 解开第二行环境变量注释</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/bin:/usr/local/bin:<span class="hljs-variable">$PATH</span><br><span class="hljs-comment"># 禁用自动更新</span><br>DISABLE_AUTO_UPDATE=<span class="hljs-string">&quot;true&quot;</span><br><span class="hljs-comment"># 设置皮肤</span><br>ZSH_THEME=<span class="hljs-string">&quot;steeef&quot;</span><br></code></pre></td></tr></table></figure><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><h3 id="安装-zsh-autosuggestions-用于命令补全"><a href="#安装-zsh-autosuggestions-用于命令补全" class="headerlink" title="安装 zsh-autosuggestions 用于命令补全"></a>安装 <a href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a> 用于命令补全</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://gitee.com/yantaozhao/zsh-autosuggestions.git <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions<br></code></pre></td></tr></table></figure><p>将插件添加至配置文件<code>~/.zshrc</code>中, 将 <code>plugins=(git)</code> 替换为</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">plugins=(<br>            git<br>            zsh-autosuggestions<br>        )<br></code></pre></td></tr></table></figure><p>之后执行 <code>source ~/.zshrc</code> 即可生效 </p><p>如果字体不清晰，可以修改 <code>~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</code> 内的 <code>ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=&#39;fg=240&#39;</code></p><p>注: 颜色值参考</p><p><img src="/img/zsh_colors.png" alt="配色参考"></p><h3 id="安装-zsh-syntax-highlighting-用于语法高亮"><a href="#安装-zsh-syntax-highlighting-用于语法高亮" class="headerlink" title="安装 zsh-syntax-highlighting 用于语法高亮"></a>安装 <a href="https://github.com/zsh-users/zsh-syntax-highlighting"><code>zsh-syntax-highlighting</code></a> 用于语法高亮</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://gitee.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting<br></code></pre></td></tr></table></figure><p>将插件添加至配置文件<code>~/.zshrc</code>中</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">plugins=(    <br>             git<br>             zsh-syntax-highlighting <br>             zsh-autosuggestions<br>        )<br></code></pre></td></tr></table></figure><h2 id="git-bash-安装zsh"><a href="#git-bash-安装zsh" class="headerlink" title="git-bash 安装zsh"></a>git-bash 安装zsh</h2><p><a href="https://www.cnblogs.com/laugh12321/p/15788324.html">一文搞定 Windows Terminal 设置与 zsh 安装【非WSL】</a></p><p><a href="https://juejin.cn/post/7122882640998301733">Windows在git-bash安装zsh - 掘金</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+          <category> 工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安装配置 </tag>
+            
+            <tag> ZSH </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker安装Redis</title>
       <link href="/2022/09/23/Docker%E5%AE%89%E8%A3%85Redis/"/>
       <url>/2022/09/23/Docker%E5%AE%89%E8%A3%85Redis/</url>
