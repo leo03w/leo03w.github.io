@@ -8,7 +8,7 @@
     <link href="/2022/10/13/Docker%E5%AE%89%E8%A3%85MySQL/"/>
     <url>/2022/10/13/Docker%E5%AE%89%E8%A3%85MySQL/</url>
     
-    <content type="html"><![CDATA[<h1 id="Docker-安装-MySQL"><a href="#Docker-安装-MySQL" class="headerlink" title="Docker 安装 MySQL"></a>Docker 安装 MySQL</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -itd --restart=always --name mysql-ai -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql<br></code></pre></td></tr></table></figure><blockquote><p>–restart&#x3D;always: 开机启动容器</p><p>-e MYSQL_ROOT_PASSWORD: 设置root密码</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<h1 id="Docker-安装-MySQL"><a href="#Docker-安装-MySQL" class="headerlink" title="Docker 安装 MySQL"></a>Docker 安装 MySQL</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -itd --restart=always --name mysql-ai -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql<br></code></pre></td></tr></table></figure><span id="more"></span><blockquote><p>–restart&#x3D;always: 开机启动容器</p><p>-e MYSQL_ROOT_PASSWORD: 设置root密码</p></blockquote>]]></content>
     
     
     <categories>
