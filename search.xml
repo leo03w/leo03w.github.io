@@ -51,9 +51,9 @@
             
             <tag> 安装配置 </tag>
             
-            <tag> MySQL </tag>
-            
             <tag> Docker </tag>
+            
+            <tag> MySQL </tag>
             
         </tags>
       
@@ -361,22 +361,22 @@
     
     
     <entry>
-      <title>about</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>读书</title>
+      <link href="/reading/index.html"/>
+      <url>/reading/index.html</url>
       
-        <content type="html"><![CDATA[<h3 id="我是-leo"><a href="#我是-leo" class="headerlink" title="我是 leo"></a>我是 leo</h3><p>详细信息</p><p>python golang</p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
     
     
     <entry>
-      <title>读书</title>
-      <link href="/reading/index.html"/>
-      <url>/reading/index.html</url>
+      <title>about</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h3 id="我是-leo"><a href="#我是-leo" class="headerlink" title="我是 leo"></a>我是 leo</h3><p>详细信息</p><p>python golang</p>]]></content>
       
     </entry>
     
