@@ -80,9 +80,9 @@
       
         <tags>
             
-            <tag> 安装配置 </tag>
-            
             <tag> CentOS </tag>
+            
+            <tag> 安装配置 </tag>
             
             <tag> Hadoop </tag>
             
@@ -104,18 +104,18 @@
           
           <category> 环境配置 </category>
           
-          <category> CentOS </category>
-          
           <category> 换源 </category>
+          
+          <category> CentOS </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> CentOS </tag>
-            
             <tag> 配置 </tag>
+            
+            <tag> CentOS </tag>
             
         </tags>
       
