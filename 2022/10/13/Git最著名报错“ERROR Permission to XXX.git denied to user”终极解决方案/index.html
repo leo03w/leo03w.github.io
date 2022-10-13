@@ -16,15 +16,15 @@
   <meta name="author" content="Leo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案from 穿山甲到底说了什么 转载, 待处理">
+    <meta name="description" content="Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案 # from 穿山甲到底说了什么 转载, 待处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 最著名报错&quot;Permission to XXX.git&quot;解决方案">
 <meta property="og:url" content="https://leo03w.github.io/2022/10/13/Git%E6%9C%80%E8%91%97%E5%90%8D%E6%8A%A5%E9%94%99%E2%80%9CERROR%20Permission%20to%20XXX.git%20denied%20to%20user%E2%80%9D%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="Leo Blog">
-<meta property="og:description" content="Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案from 穿山甲到底说了什么 转载, 待处理">
+<meta property="og:description" content="Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案 # from 穿山甲到底说了什么 转载, 待处理">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-13T12:06:40.000Z">
-<meta property="article:modified_time" content="2022-10-13T12:07:33.315Z">
+<meta property="article:modified_time" content="2022-10-13T12:10:05.813Z">
 <meta property="article:author" content="Leo">
 <meta property="article:tag" content="WiKi">
 <meta property="article:tag" content="error">
@@ -275,7 +275,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Git-最著名报错-“ERROR-Permission-to-XXX-git-denied-to-user”终极解决方案"><a href="#Git-最著名报错-“ERROR-Permission-to-XXX-git-denied-to-user”终极解决方案" class="headerlink" title="Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案"></a>Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案</h1><p><strong>from <a target="_blank" rel="noopener" href="https://www.jianshu.com/u/2fb5eb10b299">穿山甲到底说了什么</a> 转载, 待处理</strong></p>
+                <h1 id="Git-最著名报错-“ERROR-Permission-to-XXX-git-denied-to-user”终极解决方案"><a href="#Git-最著名报错-“ERROR-Permission-to-XXX-git-denied-to-user”终极解决方案" class="headerlink" title="Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案"></a>Git 最著名报错 “ERROR: Permission to XXX.git denied to user”终极解决方案</h1><p> # <strong>from <a target="_blank" rel="noopener" href="https://www.jianshu.com/u/2fb5eb10b299">穿山甲到底说了什么</a> 转载, 待处理</strong></p>
 <span id="more"></span>
 
 <p>今天和同事在弄github的时候，遇到了点小麻烦，在全球最大的中文网上一搜，果然不出所料，找不到写解决方案，于是自己在stackOverFlower上看了好几篇，总结了一下，终于找到解决方案！报错如下：<br><em><code>ERROR: Permission to hbxn740150254/BestoneGitHub.git denied to Chenzuohehe. fatal: Could not read from remote repository.Please make sure you have the correct access rights and the repository exists.</code></em><br>初看知道大概是没有权限，导致不能从远程仓库读取，后来询问才知道我同事的电脑的SSH公钥已经绑定了他自己的GitHub 账号，我就不能再用他的公钥了，具体的请看stackoverflow网友所说的：<br><em><code>GitHub will use the key as means to identify you when you connect to them via SSH. As such, you cannot have multiple accounts with the same key, as GitHub won’t be able to tell then which of your accounts you want to use.</code></em><br>上面说的话很清楚，就是你不能有多个账号添加了同一个公钥，一旦那样github就不能区分到底是哪个用户在安全登陆网站，那安全登录就起不到任何效果了，因为你能登进去，我也能登进去，那服务器到底判断是谁登了呢！但是要注意一个账号可以拥有多个公钥，这个是可以允许的！比如，在A电脑和B电脑上的公钥都绑定了同个一个账户Tom，那么两台电脑在终端上输入<code>ssh -T git@github.com</code>最后都会显示<br><code>Hi Tom! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code><br>服务器依然会知道这是Tom的第二台电脑在登陆，他是土豪，账号依然很安全！</p>
