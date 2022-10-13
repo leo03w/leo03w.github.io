@@ -16,24 +16,23 @@
   <meta name="author" content="Leo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装java, 下载并安装Hadoop, 配置环境变量">
+    <meta name="description" content="Docker 安装 FileBrowserfilebrowser 是一款非常棒的文件管理工具，使用 GO 语言编写。 虽说是文件管理工具，但它完全可以当作网盘程序来使用，并且可以跨平台。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS安装Hadoop">
-<meta property="og:url" content="https://leo03w.github.io/2022/09/23/CentOS%E5%AE%89%E8%A3%85Hadoop/index.html">
+<meta property="og:title" content="Docker安装FileBrowser">
+<meta property="og:url" content="https://leo03w.github.io/2022/10/13/Docker%E5%AE%89%E8%A3%85FileBrowser/index.html">
 <meta property="og:site_name" content="Leo Blog">
-<meta property="og:description" content="安装java, 下载并安装Hadoop, 配置环境变量">
+<meta property="og:description" content="Docker 安装 FileBrowserfilebrowser 是一款非常棒的文件管理工具，使用 GO 语言编写。 虽说是文件管理工具，但它完全可以当作网盘程序来使用，并且可以跨平台。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-23T03:31:40.000Z">
-<meta property="article:modified_time" content="2022-09-23T03:35:18.996Z">
+<meta property="article:published_time" content="2022-10-13T10:59:45.000Z">
+<meta property="article:modified_time" content="2022-10-13T11:36:22.989Z">
 <meta property="article:author" content="Leo">
 <meta property="article:tag" content="安装配置">
-<meta property="article:tag" content="CentOS">
-<meta property="article:tag" content="Hadoop">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>CentOS安装Hadoop - Leo Blog</title>
+  <title>Docker安装FileBrowser - Leo Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CentOS安装Hadoop"></span>
+            <span id="subtitle" data-typed-text="Docker安装FileBrowser"></span>
           
         </div>
 
@@ -209,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-23 11:31" pubdate>
-          2022年9月23日 中午
+        <time datetime="2022-10-13 18:59" pubdate>
+          2022年10月13日 晚上
         </time>
       </span>
     
@@ -221,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          1.5k 字
         
       </span>
     
@@ -232,7 +231,7 @@
         
         
         
-          17 分钟
+          13 分钟
         
       </span>
     
@@ -270,77 +269,58 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">CentOS安装Hadoop</h1>
+            <h1 style="display: none">Docker安装FileBrowser</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="CentOS安装Hadoop"><a href="#CentOS安装Hadoop" class="headerlink" title="CentOS安装Hadoop"></a>CentOS安装Hadoop</h1><h2 id="首先换源"><a href="#首先换源" class="headerlink" title="首先换源"></a>首先换源</h2><p><a href="../CentOS_yum%E6%8D%A2%E6%BA%90/index.html">CentOS_yum换源</a></p>
-<h1 id="1-安装java"><a href="#1-安装java" class="headerlink" title="1. 安装java"></a>1. 安装java</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo yum install java-1.8.0-openjdk-devel.x86_64<br></code></pre></td></tr></table></figure>
+                <h1 id="Docker-安装-FileBrowser"><a href="#Docker-安装-FileBrowser" class="headerlink" title="Docker 安装 FileBrowser"></a>Docker 安装 FileBrowser</h1><p><code>filebrowser</code> 是一款非常棒的文件管理工具，使用 <code>GO</code> 语言编写。</p>
+<p>虽说是文件管理工具，但它完全可以当作网盘程序来使用，并且可以跨平台。</p>
+<span id="more"></span>
 
-<h1 id="2-安装Hadoop"><a href="#2-安装Hadoop" class="headerlink" title="2. 安装Hadoop"></a>2. 安装Hadoop</h1><h3 id="下载hadoop安装包-推荐3-x版本"><a href="#下载hadoop安装包-推荐3-x版本" class="headerlink" title="下载hadoop安装包(推荐3.x版本)"></a>下载hadoop安装包(推荐3.x版本)</h3><p>这里使用中科大镜像</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://mirrors.ustc.edu.cn/apache/hadoop/common/hadoop-2.10.2/hadoop-2.10.2.tar.gz<br></code></pre></td></tr></table></figure>
+<ol>
+<li>拉取镜像</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker pull filebrowser/filebrowser<br></code></pre></td></tr></table></figure>
 
-<p>3.x版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://mirrors.ustc.edu.cn/apache/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建配置文件目录和数据文件存储目录</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkdir <span class="hljs-regexp">/path/</span>to<span class="hljs-regexp">/your/</span>filebrowser_config<br>mkdir <span class="hljs-regexp">/path/</span>to<span class="hljs-regexp">/your/</span>database<br></code></pre></td></tr></table></figure>
 
-<p>更多版本: </p>
-<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz">https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common</a></p>
-<p><a target="_blank" rel="noopener" href="https://mirrors.ustc.edu.cn/apache/hadoop/common">https://mirrors.ustc.edu.cn/apache/hadoop/common</a></p>
-<p>官网(速度极慢)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建配置文件</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs json"># config.json<br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;port&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">80</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;baseURL&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;address&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;log&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/etc/database.db/run.log&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;database&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/etc/database.db/database.db&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;root&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/srv&quot;</span><span class="hljs-punctuation">,</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="解压安装包"><a href="#解压安装包" class="headerlink" title="解压安装包"></a>解压安装包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo tar -zxvf hadoop-3.3.4.tar.gz -C /usr/local<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>port: 开放的端口</p>
+<p>log: 日志文件存储位置</p>
+<p>database: 服务运行所需数据库存储位置</p>
+<p>root: 服务器共享的根路径</p>
+</blockquote>
+<ol start="4">
+<li>将配置文件复制到filebrowser_config目录</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">cp config.json <span class="hljs-regexp">/path/</span>to<span class="hljs-regexp">/your/</span>filebrowser_config/config.json<br></code></pre></td></tr></table></figure>
 
-<h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><p>编辑配置文件, </p>
-<p>vim 命令模式操作 G跳转到末尾行, o从下一行行首开始编辑</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vi /etc/profile<br></code></pre></td></tr></table></figure>
+<ol start="5">
+<li>启动容器</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run \<br>--restart=always \<br>--name file \<br>-v /path/to/your/file:/srv \<br>-v /path/to/your/filebrowser_config/config.json:/.filebrowser.json \<br>-v /path/to/your/database:/etc/database.db \<br>-p 80:80 \<br>-d filebrowser/filebrowser<br></code></pre></td></tr></table></figure>
 
-<p>将以下内容添加到profile末尾</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># JAVA ENVs</span><br><span class="hljs-built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk<br><span class="hljs-built_in">export</span> JRE_HOME=<span class="hljs-variable">$JAVA_HOME</span>/jre<br><span class="hljs-built_in">export</span> CLASSPATH=<span class="hljs-variable">$JAVA_HOME</span>/lib:<span class="hljs-variable">$JRE_HOME</span>/lib:<span class="hljs-variable">$CLASSPATH</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$JRE_HOME</span>/bin:<span class="hljs-variable">$PATH</span><br><span class="hljs-comment"># HADOOP_HOME </span><br><span class="hljs-built_in">export</span> HADOOP_HOME=/usr/local/hadoop-3.3.4<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HADOOP_HOME</span>/bin <br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$HADOOP_HOME</span>/sbin<br></code></pre></td></tr></table></figure>
-
-<p>使配置文件生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
-
-<p>编辑hadoop-env</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo vi <span class="hljs-variable">$HADOOP_HOME</span>/etc/hadoop/hadoop-env.sh<br></code></pre></td></tr></table></figure>
-
-<p>在末尾添加</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk<br></code></pre></td></tr></table></figure>
-
-<h3 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hadoop version<br></code></pre></td></tr></table></figure>
-
-<h1 id="3-HDFS配置"><a href="#3-HDFS配置" class="headerlink" title="3. HDFS配置"></a>3. HDFS配置</h1><p>参考链接 </p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/hdfs-setup.html">4.0 HDFS 配置与使用 | 菜鸟教程</a></p>
-<p>切换到配置文件目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> <span class="hljs-variable">$HADOOP_HOME</span>/etc/hadoop<br></code></pre></td></tr></table></figure>
-
-<p>在 core-site.xml 中，我们在 标签下添加属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.defaultFS<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hdfs://<span class="hljs-tag">&lt;<span class="hljs-name">你的IP</span>&gt;</span>:9000<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>在 hdfs-site.xml 中的 标签下添加属性：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>dfs.replication<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>格式化文件结构：</p>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">hdfs namenode -<span class="hljs-built_in">format</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="启动-HDFS："><a href="#启动-HDFS：" class="headerlink" title="启动 HDFS："></a>启动 HDFS：</h3><p>生成 SSH 密钥：</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arcade">cd ~<span class="hljs-regexp">/.ssh/</span> <br>ssh-keygen -t rsa<br></code></pre></td></tr></table></figure>
-
-<p>这里可以一直按回车直到生成结束。</p>
-<p>然后将生成的密钥添加到信任列表：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> id_rsa.pub &gt;&gt; authorized_keys<br></code></pre></td></tr></table></figure>
-
-<p>修改文件权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chmod</span> 600 ./authorized_keys<br></code></pre></td></tr></table></figure>
-
-<p>启动hdfs</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-literal">start</span>-dfs.sh<br></code></pre></td></tr></table></figure>
-
-<h3 id="Hadoop常用端口说明"><a href="#Hadoop常用端口说明" class="headerlink" title="Hadoop常用端口说明"></a>Hadoop常用端口说明</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhou4411781/article/details/118882276">hadoop常用端口号_南洲.的博客-CSDN博客_hdfs默认端口是8020还是9000</a></p>
-<p>hadoop2.x<br>HDFS Namenode内部通常端口:8020&#x2F;9000<br>HDFS Namenode对用户的查询端口:50070<br>Yarn查看任务运行情况的:8088<br>历史服务器:19888</p>
-<p>hadoop3.x<br>HDFS Namenode内部通常端口:8020&#x2F;9000&#x2F;9820<br>HDFS Namenode对用户的査询端口:9870<br>Yarn查看任务运行情况的:8088<br>历史服务器:19888</p>
-<h1 id="docker安装hadoop"><a href="#docker安装hadoop" class="headerlink" title="docker安装hadoop"></a>docker安装hadoop</h1><p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/hadoop-setup.html">2.0 Hadoop 运行环境 | 菜鸟教程</a></p>
+<blockquote>
+<p>—restart&#x3D;always: 容器随主机开机启动</p>
+<p>–name: 容器名称</p>
+<p>-v &#x2F;path&#x2F;to&#x2F;your&#x2F;file: 要分享的路径, 例如&#x2F;home&#x2F;user&#x2F;file</p>
+<p>-v &#x2F;path&#x2F;to&#x2F;your&#x2F;filebrowser_config&#x2F;config.json: 刚刚创建的配置文件, 此处映射到容器内部的&#x2F;.filebrowser.json配置文件, </p>
+<p>-v &#x2F;path&#x2F;to&#x2F;your&#x2F;database:&#x2F;etc&#x2F;database.db: 服务运行所需数据库存储位置, 映射到容器内部的database.db目录</p>
+<p>-p 80:80 将本机的80端口映射到容器内部的80端口</p>
+<p>-d: 容器后台运行</p>
+<p>filebrowser&#x2F;filebrowser: 使用的镜像</p>
+</blockquote>
+<p>单行版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run --restart=always --name file -v /path/to/your/file:/srv -v /config.jsonpath/to/your/filebrowser_config/config.json:/.filebrowser.json -v /path/to/your/database:/etc/database.db -p 80:80 -d filebrowser/filebrowser<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -366,26 +346,6 @@
       </span>
     
   
-    
-      <span class="category-chain">
-        
-  <a href="/categories/CentOS/" class="category-chain-item">CentOS</a>
-  
-  
-
-      </span>
-    
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Hadoop/" class="category-chain-item">Hadoop</a>
-  
-  
-
-      </span>
-    
-  
 </span>
 
     </div>
@@ -396,9 +356,7 @@
       
         <a href="/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">#安装配置</a>
       
-        <a href="/tags/CentOS/">#CentOS</a>
-      
-        <a href="/tags/Hadoop/">#Hadoop</a>
+        <a href="/tags/Docker/">#Docker</a>
       
     </div>
   
@@ -410,8 +368,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CentOS安装Hadoop</div>
-      <div>https://leo03w.github.io/2022/09/23/CentOS安装Hadoop/</div>
+      <div>Docker安装FileBrowser</div>
+      <div>https://leo03w.github.io/2022/10/13/Docker安装FileBrowser/</div>
     </div>
     <div class="license-meta">
       
@@ -423,7 +381,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月23日</div>
+          <div>2022年10月13日</div>
         </div>
       
       
@@ -455,9 +413,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/13/Docker%E5%AE%89%E8%A3%85FileBrowser/" title="Docker安装FileBrowser">
+                      <a href="/2022/10/13/Docker%E5%AE%89%E8%A3%85MySQL/" title="Docker 安装 MySQL">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker安装FileBrowser</span>
+                        <span class="hidden-mobile">Docker 安装 MySQL</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -465,8 +423,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/23/CentOS_yum%E6%8D%A2%E6%BA%90/" title="CentOS_yum换源">
-                        <span class="hidden-mobile">CentOS_yum换源</span>
+                      <a href="/2022/09/23/CentOS%E5%AE%89%E8%A3%85Hadoop/" title="CentOS安装Hadoop">
+                        <span class="hidden-mobile">CentOS安装Hadoop</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
