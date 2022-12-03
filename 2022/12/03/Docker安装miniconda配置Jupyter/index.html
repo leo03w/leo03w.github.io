@@ -16,22 +16,27 @@
   <meta name="author" content="Leo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="个人WiKi学习过程中解决的错误汇总">
+    <meta name="description" content="Docker安装miniconda配置Jupyter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WIKI">
-<meta property="og:url" content="https://leo03w.github.io/2022/10/13/WIKI/index.html">
+<meta property="og:title" content="Docker安装miniconda配置Jupyter">
+<meta property="og:url" content="https://leo03w.github.io/2022/12/03/Docker%E5%AE%89%E8%A3%85miniconda%E9%85%8D%E7%BD%AEJupyter/index.html">
 <meta property="og:site_name" content="Leo Blog">
-<meta property="og:description" content="个人WiKi学习过程中解决的错误汇总">
+<meta property="og:description" content="Docker安装miniconda配置Jupyter">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-13T12:24:17.000Z">
-<meta property="article:modified_time" content="2022-10-13T12:53:19.486Z">
+<meta property="og:image" content="b:\02_Important\Web\github_page\blog\source_posts\docker%E5%AE%89%E8%A3%85miniconda.assets\jupyter%E6%8F%92%E4%BB%B6.jpg">
+<meta property="article:published_time" content="2022-12-03T03:22:40.000Z">
+<meta property="article:modified_time" content="2022-12-03T10:27:55.660Z">
 <meta property="article:author" content="Leo">
-<meta property="article:tag" content="WiKi">
+<meta property="article:tag" content="安装配置">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Jupyter">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="b:\02_Important\Web\github_page\blog\source_posts\docker%E5%AE%89%E8%A3%85miniconda.assets\jupyter%E6%8F%92%E4%BB%B6.jpg">
   
   
   
-  <title>WIKI - Leo Blog</title>
+  <title>Docker安装miniconda配置Jupyter - Leo Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +201,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="WIKI"></span>
+            <span id="subtitle" data-typed-text="Docker安装miniconda配置Jupyter"></span>
           
         </div>
 
@@ -207,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-13 20:24" pubdate>
-          2022年10月13日 晚上
+        <time datetime="2022-12-03 11:22" pubdate>
+          2022年12月3日 上午
         </time>
       </span>
     
@@ -219,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          786 字
+          1.7k 字
         
       </span>
     
@@ -230,7 +235,7 @@
         
         
         
-          7 分钟
+          14 分钟
         
       </span>
     
@@ -268,58 +273,67 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">WIKI</h1>
+            <h1 style="display: none">Docker安装miniconda配置Jupyter</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="个人WiKi"><a href="#个人WiKi" class="headerlink" title="个人WiKi"></a>个人WiKi</h1><p>学习过程中解决的错误汇总</p>
-<span id="more"></span>
+                <h1 id="Docker安装miniconda配置Jupyter"><a href="#Docker安装miniconda配置Jupyter" class="headerlink" title="Docker安装miniconda配置Jupyter"></a>Docker安装miniconda配置Jupyter</h1><h1 id="启用容器"><a href="#启用容器" class="headerlink" title="启用容器"></a>启用容器</h1><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haskell"><span class="hljs-title">docker</span> run -id \<br>-p <span class="hljs-number">8884</span>:<span class="hljs-number">8888</span> \<br><span class="hljs-comment">--name miniconda \</span><br><span class="hljs-comment">--restart always \</span><br>-v /<span class="hljs-class"><span class="hljs-keyword">data</span>/miniconda:/<span class="hljs-keyword">data</span>  \</span><br><span class="hljs-comment">--user root continuumio/miniconda3:latest</span><br></code></pre></td></tr></table></figure>
 
-<table>
-<thead>
-<tr>
-<th>问题</th>
-<th>解决办法</th>
-<th>类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ValueError: Unable to find resource t64.exe in package pip._vendor.distlib</td>
-<td>pip install —upgrade pip —user</td>
-<td>pip</td>
-</tr>
-<tr>
-<td>WARNING: Retrying (Retry(total&#x3D;4, connect&#x3D;None, read&#x3D;None, redirect&#x3D;None, status&#x3D;None)) after connection broken by ‘NewConnectionError(‘&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x71008de350&gt;: Failed to establish a new connection: [Errno 7] No address associated with hostname’)’: &#x2F;simple&#x2F;rich&#x2F;</td>
-<td># 带参数 –proxy&#x3D;”127.0.0.1:代理端口”</td>
-<td>pip</td>
-</tr>
-<tr>
-<td>局域网内主机不互通, ssh无法连接</td>
-<td>可能是路由器的问题, 参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37605792/article/details/93315836">局域网下电脑ping手机，网络不可达 Destination host unreachable</a> 将路由器加密方式改为 WPA2, 完美解决</td>
-<td>ssh</td>
-</tr>
-<tr>
-<td>临时设置MySQL客户端编码为gbk</td>
-<td>set names gbk;</td>
-<td>mysql</td>
-</tr>
-<tr>
-<td>FTP使用过匿名登录, 需要使用密码登录时不弹出提示</td>
-<td>右键选择 登录</td>
-<td>ftp</td>
-</tr>
-<tr>
-<td>提示U盘未被格式化</td>
-<td>chkdsk 卷标带冒号 例如: chkdsk e:</td>
-<td>U盘</td>
-</tr>
-<tr>
-<td>IDEA启动时报错: Caused by: java.net.BindException: Address already in use: bind</td>
-<td>管理员身份运行cmd netstat -anb |findstr idea64</td>
-<td>idea</td>
-</tr>
-</tbody></table>
+<h1 id="容器内安装jupyter-notebook"><a href="#容器内安装jupyter-notebook" class="headerlink" title="容器内安装jupyter notebook"></a>容器内安装jupyter notebook</h1><h2 id="更新apt-get"><a href="#更新apt-get" class="headerlink" title="更新apt-get"></a>更新apt-get</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">apt-<span class="hljs-keyword">get</span> <span class="hljs-keyword">update</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="安装python-dev包"><a href="#安装python-dev包" class="headerlink" title="安装python dev包"></a>安装python dev包</h2><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs q">apt-<span class="hljs-built_in">get</span> install python-<span class="hljs-built_in">dev</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> jupyter<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="配置jupyter-notebook"><a href="#配置jupyter-notebook" class="headerlink" title="配置jupyter notebook"></a>配置jupyter notebook</h1><p>配置包括可以外部访问、设置密码、端口号、防火墙关闭。</p>
+<p>首项，jupyter notebook默认端口为8888，并且不允许docker外部访问，想要开启必须配置jupyter_notebook_config.py文件。</p>
+<h2 id="首先初始化jupyter-notebook-config-py"><a href="#首先初始化jupyter-notebook-config-py" class="headerlink" title="首先初始化jupyter_notebook_config.py"></a>首先初始化jupyter_notebook_config.py</h2><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog">jupyter notebook --<span class="hljs-keyword">generate</span>-<span class="hljs-keyword">config</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="使用ipython生成密钥"><a href="#使用ipython生成密钥" class="headerlink" title="使用ipython生成密钥"></a>使用ipython生成密钥</h2><p><code>ipython</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd<br><br>passwd()<br></code></pre></td></tr></table></figure>
+
+<h2 id="注意保存生成的密钥"><a href="#注意保存生成的密钥" class="headerlink" title="注意保存生成的密钥"></a>注意保存生成的密钥</h2><h2 id="编辑jupyter-notebook-config-py"><a href="#编辑jupyter-notebook-config-py" class="headerlink" title="编辑jupyter_notebook_config.py"></a>编辑jupyter_notebook_config.py</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/root/</span>.jupyter/jupyter_notebook_config.py<br></code></pre></td></tr></table></figure>
+
+<h2 id="设置c-NotebookApp-password，注意前面加-u"><a href="#设置c-NotebookApp-password，注意前面加-u" class="headerlink" title="设置c.NotebookApp.password，注意前面加 u"></a>设置c.NotebookApp.password，注意前面加 u</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">c.NotebookApp.password=<span class="hljs-string">u&#x27;生成的一串密钥&#x27;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="设置外部访问"><a href="#设置外部访问" class="headerlink" title="设置外部访问"></a>设置外部访问</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># 连通性设置</span><br><span class="hljs-attr">c.NotebookApp.allow_remote_access</span> = <span class="hljs-literal">True</span><br><span class="hljs-comment"># ip设置</span><br><span class="hljs-attr">c.NotebookApp.ip</span>=<span class="hljs-string">&#x27;*&#x27;</span><br><span class="hljs-comment"># 禁止自动打开浏览器</span><br><span class="hljs-attr">c.NotebookApp.open_browser</span> = <span class="hljs-literal">False</span><br><span class="hljs-comment"># 端口设置</span><br><span class="hljs-attr">c.NotebookApp.port</span> = XXXX<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="启动jupyter-notebook"><a href="#启动jupyter-notebook" class="headerlink" title="启动jupyter notebook"></a>启动jupyter notebook</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">jupyter notebook</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="放行linux防火墙："><a href="#放行linux防火墙：" class="headerlink" title="放行linux防火墙："></a>放行linux防火墙：</h1><h2 id="放行你所设置的端口防火墙"><a href="#放行你所设置的端口防火墙" class="headerlink" title="放行你所设置的端口防火墙"></a>放行你所设置的端口防火墙</h2><h2 id="注意映射问题"><a href="#注意映射问题" class="headerlink" title="注意映射问题"></a>注意映射问题</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sudo firewall-cmd <span class="hljs-attribute">--zone</span>=public <span class="hljs-attribute">--add-port</span>=XXXX/tcp --permanent<br></code></pre></td></tr></table></figure>
+
+<h2 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="重启防火墙"></a>重启防火墙</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">sudo systemctl restart firewalld</span><br></code></pre></td></tr></table></figure>
+
+<p> 即可正常从网页端访问jupyter notebook，第一次需要输入密钥，以后会记住密钥。</p>
+<h1 id="个性化设置"><a href="#个性化设置" class="headerlink" title="个性化设置"></a>个性化设置</h1><p>安装jupyter notebook的插件。</p>
+<h2 id="安装插件前记住停止jupyter-notebook"><a href="#安装插件前记住停止jupyter-notebook" class="headerlink" title="安装插件前记住停止jupyter notebook"></a>安装插件前记住停止jupyter notebook</h2><h2 id="pip安装插件"><a href="#pip安装插件" class="headerlink" title="pip安装插件"></a>pip安装插件</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> jupyter_contrib_nbextensions<br></code></pre></td></tr></table></figure>
+
+<h2 id="配置-nbextension"><a href="#配置-nbextension" class="headerlink" title="配置 nbextension"></a>配置 nbextension</h2><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">jupyter contrib nbextension install --<span class="hljs-keyword">user</span> <span class="hljs-title">--skip-running-check</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="重启jupyter-notebook"><a href="#重启jupyter-notebook" class="headerlink" title="重启jupyter notebook"></a>重启jupyter notebook</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">jupyter notebook</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="选取插件控制器："><a href="#选取插件控制器：" class="headerlink" title="选取插件控制器："></a>选取插件控制器：</h2><p> 推荐以下插件：</p>
+<p>Table of Contents (2)：根据markdown的标题栏自动生成目录，有个按钮，可以自动添加数字编号；<br>Code prettify：对代码进行格式化；<br>Collapsible Headings：可以根据headings折叠区域；<br>Codefolding：可以对代码块进行折叠；<br>ScrollDown：当代码输出内容过长，自动下拉滚动条；</p>
+<p><img src="B:\02_Important\Web\github_page\blog\source_posts\docker安装miniconda.assets\jupyter插件.jpg" srcset="/img/loading.gif" lazyload alt="jupyter插件">其他功能自行查找示例！<br> 下面配置工作目录，首次打开会是根目录‘&#x2F;’下的工作环境，不太方便，按个人需求配置。</p>
+<h2 id="编辑-x2F-root-x2F-jupyter-x2F-jupyter-notebook-config-py"><a href="#编辑-x2F-root-x2F-jupyter-x2F-jupyter-notebook-config-py" class="headerlink" title="编辑&#x2F;root&#x2F;.jupyter&#x2F;jupyter_notebook_config.py"></a>编辑&#x2F;root&#x2F;.jupyter&#x2F;jupyter_notebook_config.py</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/root/</span>.jupyter/jupyter_notebook_config.py<br></code></pre></td></tr></table></figure>
+
+<h2 id="修改路径"><a href="#修改路径" class="headerlink" title="修改路径"></a>修改路径</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">c.NotebookApp.notebook_dir</span> = <span class="hljs-string">&#x27;XXX&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="重新启动jupyter-notebook"><a href="#重新启动jupyter-notebook" class="headerlink" title="重新启动jupyter notebook"></a>重新启动jupyter notebook</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">jupyter notebook</span><br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -338,7 +352,17 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%A5%E9%94%99/" class="category-chain-item">报错</a>
+  <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="category-chain-item">环境配置</a>
+  
+  
+
+      </span>
+    
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
   
   
 
@@ -353,7 +377,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/WiKi/">#WiKi</a>
+        <a href="/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">#安装配置</a>
+      
+        <a href="/tags/Docker/">#Docker</a>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+        <a href="/tags/Jupyter/">#Jupyter</a>
       
     </div>
   
@@ -365,8 +395,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>WIKI</div>
-      <div>https://leo03w.github.io/2022/10/13/WIKI/</div>
+      <div>Docker安装miniconda配置Jupyter</div>
+      <div>https://leo03w.github.io/2022/12/03/Docker安装miniconda配置Jupyter/</div>
     </div>
     <div class="license-meta">
       
@@ -378,7 +408,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月13日</div>
+          <div>2022年12月3日</div>
         </div>
       
       
@@ -410,9 +440,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/23/Samba%E9%85%8D%E7%BD%AE/" title="Samba配置">
+                      <a href="/2022/12/03/Python%E5%AD%A6%E4%B9%A0/" title="Python学习网址">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Samba配置</span>
+                        <span class="hidden-mobile">Python学习网址</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -420,8 +450,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/13/Git%E6%9C%80%E8%91%97%E5%90%8D%E6%8A%A5%E9%94%99%E2%80%9CERROR%20Permission%20to%20XXX.git%20denied%20to%20user%E2%80%9D%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Git 最著名报错&#34;Permission to XXX.git&#34;解决方案">
-                        <span class="hidden-mobile">Git 最著名报错&#34;Permission to XXX.git&#34;解决方案</span>
+                      <a href="/2022/12/02/Docker%E5%AE%89%E8%A3%85Minio/" title="Docker安装Minio">
+                        <span class="hidden-mobile">Docker安装Minio</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

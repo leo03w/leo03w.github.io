@@ -16,22 +16,24 @@
   <meta name="author" content="Leo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="个人WiKi学习过程中解决的错误汇总">
+    <meta name="description" content="为服务器配置Samba服务">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WIKI">
-<meta property="og:url" content="https://leo03w.github.io/2022/10/13/WIKI/index.html">
+<meta property="og:title" content="Samba配置">
+<meta property="og:url" content="https://leo03w.github.io/2022/11/23/Samba%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Leo Blog">
-<meta property="og:description" content="个人WiKi学习过程中解决的错误汇总">
+<meta property="og:description" content="为服务器配置Samba服务">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-13T12:24:17.000Z">
-<meta property="article:modified_time" content="2022-10-13T12:53:19.486Z">
+<meta property="article:published_time" content="2022-11-23T03:22:40.000Z">
+<meta property="article:modified_time" content="2022-12-03T10:27:45.095Z">
 <meta property="article:author" content="Leo">
-<meta property="article:tag" content="WiKi">
+<meta property="article:tag" content="CentOS">
+<meta property="article:tag" content="安装配置">
+<meta property="article:tag" content="Ubuntu">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>WIKI - Leo Blog</title>
+  <title>Samba配置 - Leo Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="WIKI"></span>
+            <span id="subtitle" data-typed-text="Samba配置"></span>
           
         </div>
 
@@ -207,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-13 20:24" pubdate>
-          2022年10月13日 晚上
+        <time datetime="2022-11-23 11:22" pubdate>
+          2022年11月23日 上午
         </time>
       </span>
     
@@ -219,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          786 字
+          1.1k 字
         
       </span>
     
@@ -230,7 +232,7 @@
         
         
         
-          7 分钟
+          10 分钟
         
       </span>
     
@@ -268,58 +270,64 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">WIKI</h1>
+            <h1 style="display: none">Samba配置</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="个人WiKi"><a href="#个人WiKi" class="headerlink" title="个人WiKi"></a>个人WiKi</h1><p>学习过程中解决的错误汇总</p>
-<span id="more"></span>
+                <h1 id="Samba配置"><a href="#Samba配置" class="headerlink" title="Samba配置"></a>Samba配置</h1><h2 id="1-安装samba"><a href="#1-安装samba" class="headerlink" title="1. 安装samba"></a>1. 安装samba</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install samba<br>yum install samba -y<br></code></pre></td></tr></table></figure>
 
-<table>
-<thead>
-<tr>
-<th>问题</th>
-<th>解决办法</th>
-<th>类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ValueError: Unable to find resource t64.exe in package pip._vendor.distlib</td>
-<td>pip install —upgrade pip —user</td>
-<td>pip</td>
-</tr>
-<tr>
-<td>WARNING: Retrying (Retry(total&#x3D;4, connect&#x3D;None, read&#x3D;None, redirect&#x3D;None, status&#x3D;None)) after connection broken by ‘NewConnectionError(‘&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x71008de350&gt;: Failed to establish a new connection: [Errno 7] No address associated with hostname’)’: &#x2F;simple&#x2F;rich&#x2F;</td>
-<td># 带参数 –proxy&#x3D;”127.0.0.1:代理端口”</td>
-<td>pip</td>
-</tr>
-<tr>
-<td>局域网内主机不互通, ssh无法连接</td>
-<td>可能是路由器的问题, 参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37605792/article/details/93315836">局域网下电脑ping手机，网络不可达 Destination host unreachable</a> 将路由器加密方式改为 WPA2, 完美解决</td>
-<td>ssh</td>
-</tr>
-<tr>
-<td>临时设置MySQL客户端编码为gbk</td>
-<td>set names gbk;</td>
-<td>mysql</td>
-</tr>
-<tr>
-<td>FTP使用过匿名登录, 需要使用密码登录时不弹出提示</td>
-<td>右键选择 登录</td>
-<td>ftp</td>
-</tr>
-<tr>
-<td>提示U盘未被格式化</td>
-<td>chkdsk 卷标带冒号 例如: chkdsk e:</td>
-<td>U盘</td>
-</tr>
-<tr>
-<td>IDEA启动时报错: Caused by: java.net.BindException: Address already in use: bind</td>
-<td>管理员身份运行cmd netstat -anb |findstr idea64</td>
-<td>idea</td>
-</tr>
-</tbody></table>
+<h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2. 配置"></a>2. 配置</h2><p><strong>指定账号的访问</strong></p>
+<ul>
+<li><h5 id="选择一个共享路径，假设为-x2F-home-x2F-work-x2F-share，不存在的情况下可以自己创建"><a href="#选择一个共享路径，假设为-x2F-home-x2F-work-x2F-share，不存在的情况下可以自己创建" class="headerlink" title="选择一个共享路径，假设为&#x2F;home&#x2F;work&#x2F;share，不存在的情况下可以自己创建"></a>选择一个共享路径，假设为&#x2F;home&#x2F;work&#x2F;share，不存在的情况下可以自己创建</h5></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /home/work/share<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="添加一个可访问用户到Ubuntu系统中，如smbuser，若存在则不需要创建"><a href="#添加一个可访问用户到Ubuntu系统中，如smbuser，若存在则不需要创建" class="headerlink" title="添加一个可访问用户到Ubuntu系统中，如smbuser，若存在则不需要创建"></a>添加一个可访问用户到Ubuntu系统中，如smbuser，若存在则不需要创建</h5></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo useradd smbuser -s /usr/sbin/nologin<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="修改文件权限使得smbuser用户能够访问共享路径"><a href="#修改文件权限使得smbuser用户能够访问共享路径" class="headerlink" title="修改文件权限使得smbuser用户能够访问共享路径"></a>修改文件权限使得smbuser用户能够访问共享路径</h5></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">chown</span> smbuser:smbuser /home/work/share<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="将用户smbuser添加到samba的smbpasswd-file中（即在samba服务中注册该账户）"><a href="#将用户smbuser添加到samba的smbpasswd-file中（即在samba服务中注册该账户）" class="headerlink" title="将用户smbuser添加到samba的smbpasswd file中（即在samba服务中注册该账户）"></a>将用户smbuser添加到samba的smbpasswd file中（即在samba服务中注册该账户）</h5></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo smbpasswd -a smbuser<br><span class="hljs-comment">#后续设置登录密码，用于远程访问</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="修改samba配置文件（-x2F-etc-x2F-samba-x2F-smb-conf）"><a href="#修改samba配置文件（-x2F-etc-x2F-samba-x2F-smb-conf）" class="headerlink" title="修改samba配置文件（&#x2F;etc&#x2F;samba&#x2F;smb.conf）"></a>修改samba配置文件（&#x2F;etc&#x2F;samba&#x2F;smb.conf）</h5></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash">[global]<br>   workgroup = WORKGROUP<br>   security = user<br>   <span class="hljs-built_in">log</span> level=2<br>   ntlm auth = <span class="hljs-built_in">yes</span><br>   <span class="hljs-built_in">log</span> file = /var/log/samba/log.%m<br>   <span class="hljs-comment"># 设置Samba Server日志文件的存储位置以及日志文件名称。在文件名后加个 宏%m（主机名），表示对每台访问Samba Server的机器都单独记录一个日志文件。如果pc1、pc2访问过Samba Server，就会在/var/log/samba目录下留下log.pc1和log.pc2两个日志文件。</span><br><br>[file]<br>   comment = file<br>   path = /file<br>   public = <span class="hljs-built_in">yes</span><br>   writable = <span class="hljs-built_in">yes</span><br>   browseable = <span class="hljs-built_in">yes</span><br>   valid <span class="hljs-built_in">users</span> = ai<br>   directory mask = 0775<br>   create mask = 0775<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭防火墙</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">systemctl stop firewalld.service<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭增强功能(SELinux)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">setenforce 0<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>开启samba服务</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># centos</span><br>systemctl start smb<br><span class="hljs-comment"># ubuntu</span><br>sudo service smbd start<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="辅助命令"><a href="#辅助命令" class="headerlink" title="辅助命令"></a>辅助命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 查看samba用户列表</span><br>pdbedit -L<br> <br><span class="hljs-comment"># 对samba用户进行管理（用户已经在系统中创建）</span><br>smbpasswd -h  <span class="hljs-comment">#查看支持的命令列表</span><br> <br><span class="hljs-comment"># 异常时可查看日志情况</span><br><span class="hljs-built_in">cat</span> /var/log/samba/log.%m<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="Windows清除smb认证信息"><a href="#Windows清除smb认证信息" class="headerlink" title="Windows清除smb认证信息"></a>Windows清除smb认证信息</h5><p>cmd执行</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-built_in">net</span> use * /d /y<br></code></pre></td></tr></table></figure>
+
+<p>控制面板 - 用户账户 - 凭据管理器 - 管理windows凭据</p>
 
                 
               </div>
@@ -338,7 +346,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%A5%E9%94%99/" class="category-chain-item">报错</a>
+  <a href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="category-chain-item">安装配置</a>
   
   
 
@@ -353,7 +361,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/WiKi/">#WiKi</a>
+        <a href="/tags/CentOS/">#CentOS</a>
+      
+        <a href="/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">#安装配置</a>
+      
+        <a href="/tags/Ubuntu/">#Ubuntu</a>
       
     </div>
   
@@ -365,8 +377,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>WIKI</div>
-      <div>https://leo03w.github.io/2022/10/13/WIKI/</div>
+      <div>Samba配置</div>
+      <div>https://leo03w.github.io/2022/11/23/Samba配置/</div>
     </div>
     <div class="license-meta">
       
@@ -378,7 +390,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月13日</div>
+          <div>2022年11月23日</div>
         </div>
       
       
@@ -410,9 +422,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/23/Samba%E9%85%8D%E7%BD%AE/" title="Samba配置">
+                      <a href="/2022/11/28/Docker%E5%AE%89%E8%A3%85Gitea/" title="Docker安装Gitea">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Samba配置</span>
+                        <span class="hidden-mobile">Docker安装Gitea</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -420,8 +432,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/13/Git%E6%9C%80%E8%91%97%E5%90%8D%E6%8A%A5%E9%94%99%E2%80%9CERROR%20Permission%20to%20XXX.git%20denied%20to%20user%E2%80%9D%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Git 最著名报错&#34;Permission to XXX.git&#34;解决方案">
-                        <span class="hidden-mobile">Git 最著名报错&#34;Permission to XXX.git&#34;解决方案</span>
+                      <a href="/2022/10/13/WIKI/" title="WIKI">
+                        <span class="hidden-mobile">WIKI</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
