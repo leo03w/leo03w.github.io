@@ -4,6 +4,91 @@
   
   
   <entry>
+    <title>Python学习网址</title>
+    <link href="/2022/12/03/Python%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2022/12/03/Python%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://web.archive.org/web/20200822010330/https://bop.mol.uno/">介绍 · 简明 Python 教程 (archive.org)</a></p><p><a href="https://www.woodpecker.org.cn/diveintopython3/">深入 Python 3 (woodpecker.org.cn)</a></p><p><a href="https://www.osgeo.cn/cpython/">3.10.0a4 Documentation (osgeo.cn)</a></p><p><a href="https://www.cnblogs.com/derek1184405959/p/8579428.html">人生苦短，我用python（目录） - zhang_derek - 博客园 (cnblogs.com)</a></p><p><a href="https://pythonguidecn.readthedocs.io/zh/latest/">Python最佳实践指南！ — The Hitchhiker’s Guide to Python (pythonguidecn.readthedocs.io)</a></p><p><a href="https://www.liaoxuefeng.com/wiki/1016959663602400">Python教程 - 廖雪峰的官方网站 (liaoxuefeng.com)</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Python</category>
+      
+      <category>网址</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Docker安装Minio</title>
+    <link href="/2022/12/02/Docker%E5%AE%89%E8%A3%85Minio/"/>
+    <url>/2022/12/02/Docker%E5%AE%89%E8%A3%85Minio/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">docker run <span class="hljs-params">--restart=always</span> -d \<br>  -p 9000<span class="hljs-function">:9000</span> -p 9090<span class="hljs-function">:9090</span> \<br>  -v <span class="hljs-string">/data/minio</span>:<span class="hljs-string">/data/minio</span> \<br>  -e <span class="hljs-string">&quot;MINIO_ROOT_USER=root&quot;</span> \<br>  -e <span class="hljs-string">&quot;MINIO_ROOT_PASSWORD=aizhineng&quot;</span> <span class="hljs-params">--name</span> minio \<br>   minio/minio server <span class="hljs-string">/data/minio</span> \<br>   <span class="hljs-params">--console-address</span> <span class="hljs-string">&quot;:9000&quot;</span> <span class="hljs-params">--address</span> <span class="hljs-string">&quot;:9090&quot;</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>环境配置</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>安装配置</tag>
+      
+      <tag>Docker</tag>
+      
+      <tag>Minio</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Docker安装Gitea</title>
+    <link href="/2022/11/28/Docker%E5%AE%89%E8%A3%85Gitea/"/>
+    <url>/2022/11/28/Docker%E5%AE%89%E8%A3%85Gitea/</url>
+    
+    <content type="html"><![CDATA[<p>先创建所需文件夹</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /data/gitea/data<br>sudo <span class="hljs-built_in">mkdir</span> /data/gitea/config<br>sudo <span class="hljs-built_in">mkdir</span> /data/gitea/log<br></code></pre></td></tr></table></figure><p>创建容器</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo docker run -d --restart=always --name=gitea \<br>-p 10022:22 -p 3000:3000 \<br>-v /data/gitea/data:/data \<br>-v /data/gitea/config:/data/gitea/conf \<br>-v /data/gitea/log:/data/gitea/log \<br>-v /etc/timezone:/etc/timezone:ro \<br>-v /etc/localtime:/etc/localtime:ro \<br>gitea/gitea<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>环境配置</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>安装配置</tag>
+      
+      <tag>Docker</tag>
+      
+      <tag>Gitea</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>WIKI</title>
     <link href="/2022/10/13/WIKI/"/>
     <url>/2022/10/13/WIKI/</url>
@@ -182,7 +267,7 @@
     <link href="/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/"/>
     <url>/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/</url>
     
-    <content type="html"><![CDATA[<h1 id="Jupyter配置"><a href="#Jupyter配置" class="headerlink" title="Jupyter配置"></a>Jupyter配置</h1><h2 id="Termux下"><a href="#Termux下" class="headerlink" title="Termux下"></a>Termux下</h2><p>安装 <code>libzmq</code></p><blockquote><p>之前报错就是因为没有libzmq，pip安装的时候没法编译</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install libzmq<br></code></pre></td></tr></table></figure><h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyte<br></code></pre></td></tr></table></figure><h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jupyter notebook --generate-config<br></code></pre></td></tr></table></figure><p>默认生成在 <code>~/.jupytercd ~/.jupyter</code> </p><h2 id="使用-ipython-生成密匙"><a href="#使用-ipython-生成密匙" class="headerlink" title="使用 ipython 生成密匙"></a>使用 <code>ipython</code> 生成密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">from notebook.auth import passwdpasswd()<br></code></pre></td></tr></table></figure><p>按提示输入密码，复制生成的字符串(例如’sha1:aabbcc00’)</p><h2 id="编辑-jupyter-notebook-config-py-添加刚刚生成的密匙"><a href="#编辑-jupyter-notebook-config-py-添加刚刚生成的密匙" class="headerlink" title="编辑 jupyter_notebook_config.py 添加刚刚生成的密匙"></a>编辑 <code>jupyter_notebook_config.py</code> 添加刚刚生成的密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">c.NotebookApp.password = <span class="hljs-string">&#x27;sha1:aabbcc00&#x27;</span><br><span class="hljs-comment"># 允许任何ip访问</span><br>c.NotebookApp.ip=<span class="hljs-string">&#x27;*&#x27;</span> <br><span class="hljs-comment"># 禁用自启动浏览器</span><br>c.NotebookApp.open_browser = False <br><span class="hljs-comment"># 设置端口</span><br>c.NotebookApp.port =8888 <br><br></code></pre></td></tr></table></figure><h3 id="（以下为个人配置）设置别名"><a href="#（以下为个人配置）设置别名" class="headerlink" title="（以下为个人配置）设置别名"></a>（以下为个人配置）设置别名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> ~/.jupyter/leo<br>vi ~/.zshrc<br><span class="hljs-built_in">alias</span> myjupyter=<span class="hljs-string">&quot;jupyter notebook --notebook-dir /data/data/com.termux/files/home/.jupyter/leo &amp; sleep 1; termux-open http://127.0.0.1:8880”</span><br></code></pre></td></tr></table></figure><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter_contrib_nbextensions &amp;&amp; jupyter contrib nbextension install<br></code></pre></td></tr></table></figure><p><img src="/img/Jupyter_plugins.png" alt="plugins"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Jupyter配置"><a href="#Jupyter配置" class="headerlink" title="Jupyter配置"></a>Jupyter配置</h1><h2 id="Termux下"><a href="#Termux下" class="headerlink" title="Termux下"></a>Termux下</h2><p>安装 <code>libzmq</code></p><blockquote><p>之前报错就是因为没有libzmq，pip安装的时候没法编译</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install libzmq<br></code></pre></td></tr></table></figure><h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter<br></code></pre></td></tr></table></figure><h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jupyter notebook --generate-config<br></code></pre></td></tr></table></figure><p>默认生成在 <code>~/.jupytercd ~/.jupyter</code> </p><h2 id="使用-ipython-生成密匙"><a href="#使用-ipython-生成密匙" class="headerlink" title="使用 ipython 生成密匙"></a>使用 <code>ipython</code> 生成密匙</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd<br>passwd()<br></code></pre></td></tr></table></figure><p>按提示输入密码，复制生成的字符串(例如’sha1:aabbcc00’)</p><h2 id="编辑-jupyter-notebook-config-py-添加刚刚生成的密匙"><a href="#编辑-jupyter-notebook-config-py-添加刚刚生成的密匙" class="headerlink" title="编辑 jupyter_notebook_config.py 添加刚刚生成的密匙"></a>编辑 <code>jupyter_notebook_config.py</code> 添加刚刚生成的密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">c.NotebookApp.password = <span class="hljs-string">&#x27;sha1:aabbcc00&#x27;</span><br><span class="hljs-comment"># 允许任何ip访问</span><br>c.NotebookApp.ip=<span class="hljs-string">&#x27;*&#x27;</span> <br><span class="hljs-comment"># 禁用自启动浏览器</span><br>c.NotebookApp.open_browser = False <br><span class="hljs-comment"># 设置端口</span><br>c.NotebookApp.port =8888 <br><br></code></pre></td></tr></table></figure><h3 id="（以下为个人配置）设置别名"><a href="#（以下为个人配置）设置别名" class="headerlink" title="（以下为个人配置）设置别名"></a>（以下为个人配置）设置别名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> ~/.jupyter/leo<br>vi ~/.zshrc<br><span class="hljs-built_in">alias</span> myjupyter=<span class="hljs-string">&quot;jupyter notebook --notebook-dir /data/data/com.termux/files/home/.jupyter/leo &amp; sleep 1; termux-open http://127.0.0.1:8880”</span><br></code></pre></td></tr></table></figure><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter_contrib_nbextensions &amp;&amp; jupyter contrib nbextension install<br></code></pre></td></tr></table></figure><p><img src="/img/Jupyter_plugins.png" alt="plugins"></p>]]></content>
     
     
     <categories>
@@ -275,7 +360,7 @@
     <link href="/2022/09/23/Golang%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
     <url>/2022/09/23/Golang%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
     
-    <content type="html"><![CDATA[<h1 id="Golang安装与配置"><a href="#Golang安装与配置" class="headerlink" title="Golang安装与配置"></a>Golang安装与配置</h1><h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><p>访问 <a href="https://studygolang.com/dl">Go语言中文网</a> 进行下载</p><h1 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h1><ol><li>下载安装包</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget &lt;https://studygolang.com/dl/golang/go1.19.linux-amd64.tar.gz&gt;<br></code></pre></td></tr></table></figure><ol><li>解压安装包至 &#x2F;usr&#x2F;local</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -C /usr/local -xzf go1.19.linux-amd64.tar.gz<br></code></pre></td></tr></table></figure><ol><li>配置环境变量</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.bashrc<br><br><span class="hljs-built_in">export</span> GOROOT=/usr/local/go<br><span class="hljs-built_in">export</span> GOPATH=/usr/local/projects/go<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$GOROOT</span>/bin:<span class="hljs-variable">$GPPATH</span>/bin<br><br><span class="hljs-built_in">source</span> ~/.bashrc<br><br><span class="hljs-comment"># 如果使用zsh 则此处bashrc变为zshrc</span><br></code></pre></td></tr></table></figure><ol><li>设置代理</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">go <span class="hljs-built_in">env</span> -w GOPROXY=https://goproxy.io,direct<br>go <span class="hljs-built_in">env</span> -w GO111MODULE=on<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="Golang安装与配置"><a href="#Golang安装与配置" class="headerlink" title="Golang安装与配置"></a>Golang安装与配置</h1><h1 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h1><p>访问 <a href="https://studygolang.com/dl">Go语言中文网</a> 进行下载</p><h1 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h1><ol><li>下载安装包</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget &lt;https://studygolang.com/dl/golang/go1.19.linux-amd64.tar.gz&gt;<br></code></pre></td></tr></table></figure><ol><li>解压安装包至 &#x2F;usr&#x2F;local</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tar -C /usr/local -xzf go1.19.linux-amd64.tar.gz<br></code></pre></td></tr></table></figure><ol><li>配置环境变量</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.bashrc<br><br><span class="hljs-built_in">export</span> GOROOT=/usr/local/go<br><span class="hljs-built_in">export</span> GOPATH=/usr/local/projects/go<br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$GOROOT</span>/bin:<span class="hljs-variable">$GPPATH</span>/bin<br><br><span class="hljs-built_in">source</span> ~/.bashrc<br><br><span class="hljs-comment"># 如果使用zsh 则此处bashrc变为zshrc</span><br></code></pre></td></tr></table></figure><ol><li>设置代理</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">go <span class="hljs-built_in">env</span> -w GOPROXY=https://goproxy.io,direct<br>go <span class="hljs-built_in">env</span> -w GO111MODULE=on<br></code></pre></td></tr></table></figure><p><img src="https://cn-assets.gitee.com/assets/giteego-6c61c00c7ee85e118ecfd749bb3b3c13.svg"></p>]]></content>
     
     
     <categories>
@@ -348,6 +433,33 @@
       <tag>安装配置</tag>
       
       <tag>Redis</tag>
+      
+      <tag>Docker</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Docker可视化管理工具</title>
+    <link href="/2022/09/23/Docker%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7portainer/"/>
+    <url>/2022/09/23/Docker%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7portainer/</url>
+    
+    <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d -p 9001:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /data/portainer/data:/data -v /data/portainer/public:/public portainer/portainer<br></code></pre></td></tr></table></figure><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>www.aliyundrive.com<span class="hljs-regexp">/s/</span><span class="hljs-number">76</span>QYWcL87Hn<br>密码: <span class="hljs-number">18</span>gu<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>安装配置</tag>
       
       <tag>Docker</tag>
       

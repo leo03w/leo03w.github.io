@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://leo03w.github.io/img/Jupyter_plugins.png">
 <meta property="article:published_time" content="2022-09-23T03:22:40.000Z">
-<meta property="article:modified_time" content="2022-09-23T03:40:25.817Z">
+<meta property="article:modified_time" content="2022-11-22T11:32:30.344Z">
 <meta property="article:author" content="Leo">
 <meta property="article:tag" content="安装配置">
 <meta property="article:tag" content="Python">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          719 字
+          721 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -283,12 +283,12 @@
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install libzmq<br></code></pre></td></tr></table></figure>
 
-<h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyte<br></code></pre></td></tr></table></figure>
+<h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter<br></code></pre></td></tr></table></figure>
 
 <h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jupyter notebook --generate-config<br></code></pre></td></tr></table></figure>
 
 <p>默认生成在 <code>~/.jupytercd ~/.jupyter</code> </p>
-<h2 id="使用-ipython-生成密匙"><a href="#使用-ipython-生成密匙" class="headerlink" title="使用 ipython 生成密匙"></a>使用 <code>ipython</code> 生成密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">from notebook.auth import passwdpasswd()<br></code></pre></td></tr></table></figure>
+<h2 id="使用-ipython-生成密匙"><a href="#使用-ipython-生成密匙" class="headerlink" title="使用 ipython 生成密匙"></a>使用 <code>ipython</code> 生成密匙</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd<br>passwd()<br></code></pre></td></tr></table></figure>
 
 <p>按提示输入密码，复制生成的字符串(例如’sha1:aabbcc00’)</p>
 <h2 id="编辑-jupyter-notebook-config-py-添加刚刚生成的密匙"><a href="#编辑-jupyter-notebook-config-py-添加刚刚生成的密匙" class="headerlink" title="编辑 jupyter_notebook_config.py 添加刚刚生成的密匙"></a>编辑 <code>jupyter_notebook_config.py</code> 添加刚刚生成的密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">c.NotebookApp.password = <span class="hljs-string">&#x27;sha1:aabbcc00&#x27;</span><br><span class="hljs-comment"># 允许任何ip访问</span><br>c.NotebookApp.ip=<span class="hljs-string">&#x27;*&#x27;</span> <br><span class="hljs-comment"># 禁用自启动浏览器</span><br>c.NotebookApp.open_browser = False <br><span class="hljs-comment"># 设置端口</span><br>c.NotebookApp.port =8888 <br><br></code></pre></td></tr></table></figure>

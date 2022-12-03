@@ -16,22 +16,23 @@
   <meta name="author" content="Leo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="个人WiKi学习过程中解决的错误汇总">
+    <meta name="description" content="1docker run -d -p 9001:9000 --restart&#x3D;always --name portainer -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock -v &#x2F;data&#x2F;portainer&#x2F;data:&#x2F;data -v &#x2F;data&#x2F;portainer&#x2F;public:&#x2F;public portainer&#x2F;portainer  12https:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="WIKI">
-<meta property="og:url" content="https://leo03w.github.io/2022/10/13/WIKI/index.html">
+<meta property="og:title" content="Docker可视化管理工具">
+<meta property="og:url" content="https://leo03w.github.io/2022/09/23/Docker%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7portainer/index.html">
 <meta property="og:site_name" content="Leo Blog">
-<meta property="og:description" content="个人WiKi学习过程中解决的错误汇总">
+<meta property="og:description" content="1docker run -d -p 9001:9000 --restart&#x3D;always --name portainer -v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock -v &#x2F;data&#x2F;portainer&#x2F;data:&#x2F;data -v &#x2F;data&#x2F;portainer&#x2F;public:&#x2F;public portainer&#x2F;portainer  12https:">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-13T12:24:17.000Z">
-<meta property="article:modified_time" content="2022-10-13T12:53:19.486Z">
+<meta property="article:published_time" content="2022-09-23T00:21:40.000Z">
+<meta property="article:modified_time" content="2022-12-03T10:22:07.724Z">
 <meta property="article:author" content="Leo">
-<meta property="article:tag" content="WiKi">
+<meta property="article:tag" content="安装配置">
+<meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>WIKI - Leo Blog</title>
+  <title>Docker可视化管理工具 - Leo Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="WIKI"></span>
+            <span id="subtitle" data-typed-text="Docker可视化管理工具"></span>
           
         </div>
 
@@ -207,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-13 20:24" pubdate>
-          2022年10月13日 晚上
+        <time datetime="2022-09-23 08:21" pubdate>
+          2022年9月23日 早上
         </time>
       </span>
     
@@ -219,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          786 字
+          226 字
         
       </span>
     
@@ -230,7 +231,7 @@
         
         
         
-          7 分钟
+          2 分钟
         
       </span>
     
@@ -268,58 +269,15 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">WIKI</h1>
+            <h1 style="display: none">Docker可视化管理工具</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="个人WiKi"><a href="#个人WiKi" class="headerlink" title="个人WiKi"></a>个人WiKi</h1><p>学习过程中解决的错误汇总</p>
-<span id="more"></span>
+                <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -d -p 9001:9000 --restart=always --name portainer -v /var/run/docker.sock:/var/run/docker.sock -v /data/portainer/data:/data -v /data/portainer/public:/public portainer/portainer<br></code></pre></td></tr></table></figure>
 
-<table>
-<thead>
-<tr>
-<th>问题</th>
-<th>解决办法</th>
-<th>类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ValueError: Unable to find resource t64.exe in package pip._vendor.distlib</td>
-<td>pip install —upgrade pip —user</td>
-<td>pip</td>
-</tr>
-<tr>
-<td>WARNING: Retrying (Retry(total&#x3D;4, connect&#x3D;None, read&#x3D;None, redirect&#x3D;None, status&#x3D;None)) after connection broken by ‘NewConnectionError(‘&lt;pip._vendor.urllib3.connection.HTTPSConnection object at 0x71008de350&gt;: Failed to establish a new connection: [Errno 7] No address associated with hostname’)’: &#x2F;simple&#x2F;rich&#x2F;</td>
-<td># 带参数 –proxy&#x3D;”127.0.0.1:代理端口”</td>
-<td>pip</td>
-</tr>
-<tr>
-<td>局域网内主机不互通, ssh无法连接</td>
-<td>可能是路由器的问题, 参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_37605792/article/details/93315836">局域网下电脑ping手机，网络不可达 Destination host unreachable</a> 将路由器加密方式改为 WPA2, 完美解决</td>
-<td>ssh</td>
-</tr>
-<tr>
-<td>临时设置MySQL客户端编码为gbk</td>
-<td>set names gbk;</td>
-<td>mysql</td>
-</tr>
-<tr>
-<td>FTP使用过匿名登录, 需要使用密码登录时不弹出提示</td>
-<td>右键选择 登录</td>
-<td>ftp</td>
-</tr>
-<tr>
-<td>提示U盘未被格式化</td>
-<td>chkdsk 卷标带冒号 例如: chkdsk e:</td>
-<td>U盘</td>
-</tr>
-<tr>
-<td>IDEA启动时报错: Caused by: java.net.BindException: Address already in use: bind</td>
-<td>管理员身份运行cmd netstat -anb |findstr idea64</td>
-<td>idea</td>
-</tr>
-</tbody></table>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>www.aliyundrive.com<span class="hljs-regexp">/s/</span><span class="hljs-number">76</span>QYWcL87Hn<br>密码: <span class="hljs-number">18</span>gu<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -338,7 +296,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%A5%E9%94%99/" class="category-chain-item">报错</a>
+  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
   
   
 
@@ -353,7 +311,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/WiKi/">#WiKi</a>
+        <a href="/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">#安装配置</a>
+      
+        <a href="/tags/Docker/">#Docker</a>
       
     </div>
   
@@ -365,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>WIKI</div>
-      <div>https://leo03w.github.io/2022/10/13/WIKI/</div>
+      <div>Docker可视化管理工具</div>
+      <div>https://leo03w.github.io/2022/09/23/Docker可视化工具portainer/</div>
     </div>
     <div class="license-meta">
       
@@ -378,7 +338,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月13日</div>
+          <div>2022年9月23日</div>
         </div>
       
       
@@ -410,9 +370,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/28/Docker%E5%AE%89%E8%A3%85Gitea/" title="Docker安装Gitea">
+                      <a href="/2022/09/23/Docker%E5%AE%89%E8%A3%85Redis/" title="Docker安装Redis">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Docker安装Gitea</span>
+                        <span class="hidden-mobile">Docker安装Redis</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -420,8 +380,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/13/Git%E6%9C%80%E8%91%97%E5%90%8D%E6%8A%A5%E9%94%99%E2%80%9CERROR%20Permission%20to%20XXX.git%20denied%20to%20user%E2%80%9D%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Git 最著名报错&#34;Permission to XXX.git&#34;解决方案">
-                        <span class="hidden-mobile">Git 最著名报错&#34;Permission to XXX.git&#34;解决方案</span>
+                      <a href="/2022/09/23/Vim%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE/" title="Vim简单配置">
+                        <span class="hidden-mobile">Vim简单配置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
