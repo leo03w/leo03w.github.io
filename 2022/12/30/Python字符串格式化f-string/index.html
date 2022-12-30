@@ -1,0 +1,1110 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Leo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Python字符串格式化方法f-string | f&quot;{}&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python字符串格式化f-string">
+<meta property="og:url" content="https://leo03w.github.io/2022/12/30/Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96f-string/index.html">
+<meta property="og:site_name" content="Leo Blog">
+<meta property="og:description" content="Python字符串格式化方法f-string | f&quot;{}&quot;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-30T13:21:57.000Z">
+<meta property="article:modified_time" content="2022-12-30T13:22:00.296Z">
+<meta property="article:author" content="Leo">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Python字符串格式化f-string - Leo Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"leo03w.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Leo&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Python字符串格式化f-string"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-30 21:21" pubdate>
+          2022年12月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          116 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python字符串格式化f-string</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Python字符串格式化-f-string"><a href="#Python字符串格式化-f-string" class="headerlink" title="Python字符串格式化 f-string"></a>Python字符串格式化 <em>f-string</em></h1><h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p><em>格式字符串字面值</em> 或称 <em>f-string</em> 是标注了 <code>&#39;f&#39;</code> 或 <code>&#39;F&#39;</code> 前缀的字符串字面值。这种字符串可包含替换字段，即以 <code>&#123;&#125;</code> 标注的表达式。其他字符串字面值只是常量，格式字符串字面值则是可在运行时求值的表达式。</p>
+<p>基本语法如下:</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">f_string          ::=  (literal_char | &quot;&#123;&#123;&quot; | &quot;&#125;&#125;&quot; | replacement_field)*<br>replacement_field ::=  &quot;&#123;&quot; f_expression [&quot;=&quot;] [&quot;!&quot; <span class="hljs-keyword">conversion</span>] [&quot;:&quot; format_spec] &quot;&#125;&quot;<br>f_expression      ::=  (conditional_expression | &quot;*&quot; or_expr)<br>                         (&quot;,&quot; conditional_expression | &quot;,&quot; &quot;*&quot; or_expr)* [&quot;,&quot;]<br>                       | yield_expression<br><span class="hljs-keyword">conversion</span>        ::=  &quot;s&quot; | &quot;r&quot; | &quot;a&quot;<br>format_spec       ::=  (literal_char | <span class="hljs-keyword">NULL</span> | replacement_field)*<br>literal_char      ::=  &lt;<span class="hljs-keyword">any</span> code <span class="hljs-type">point</span> <span class="hljs-keyword">except</span> &quot;&#123;&quot;, &quot;&#125;&quot; <span class="hljs-keyword">or</span> <span class="hljs-keyword">NULL</span>&gt;<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h3><p><code>f-string</code>是格式化字符串的一种很好的方法。与其他格式化方式相比，它们不仅更易读，更简洁，不易出错，而且速度更快！</p>
+<ul>
+<li><p><em>3.6 新版功能.</em></p>
+</li>
+<li><p><em>在 3.7 版更改:</em> Python 3.7 以前， 因为实现的问题，不允许在格式字符串字面值表达式中使用 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/reference/expressions.html#await"><code>await</code></a> 表达式与包含 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/reference/compound_stmts.html#async-for"><code>async for</code></a> 子句的推导式。</p>
+</li>
+<li><p><em>3.8 新版功能:</em> 等号 <code>&#39;=&#39;</code>。</p>
+<p><code>&#39;=&#39;</code>用法通常用于调试过程输出变量名称及其存储的值.</p>
+<p>表达式里含等号 ‘&#x3D;’ 时，输出内容包括表达式文本、’&#x3D;’ 、求值结果。输出内容可以保留表达式中左花括号 ‘{‘ 后，及 ‘&#x3D;’ 后的空格。没有指定格式时，’&#x3D;’ 默认调用表达式的 repr()。指定了格式时，默认调用表达式的 str()，除非声明了转换字段 ‘!r’。</p>
+</li>
+</ul>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="整数格式化"><a href="#整数格式化" class="headerlink" title="整数格式化"></a>整数格式化</h3><p><strong>基本格式类型</strong></p>
+<table>
+<thead>
+<tr>
+<th>格式描述符</th>
+<th>含义与作用</th>
+<th>适用变量类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s</td>
+<td>普通字符串格式</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>b</td>
+<td>二进制整数格式</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>c</td>
+<td>字符格式，按 unicode 编码将整数转换为对应字符</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>d</td>
+<td>十进制整数格式</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>o</td>
+<td>八进制整数格式</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>x</td>
+<td>十六进制整数格式（小写字母）</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>X</td>
+<td>十六进制整数格式（大写字母）</td>
+<td>整数</td>
+</tr>
+<tr>
+<td>e</td>
+<td>科学计数格式，以 e 表示 ×10^</td>
+<td>浮点数、复数、整数（自动转换为浮点数）</td>
+</tr>
+<tr>
+<td>E</td>
+<td>与 e 等价，但以 E 表示 ×10^</td>
+<td>浮点数、复数、整数（自动转换为浮点数）</td>
+</tr>
+<tr>
+<td>f</td>
+<td>定点数格式，默认精度（precision）是 6</td>
+<td>浮点数、复数、整数（自动转换为浮点数）</td>
+</tr>
+<tr>
+<td>F</td>
+<td>与 f 等价，但将 nan 和 inf 换成 NAN 和 INF</td>
+<td>浮点数、复数、整数（自动转换为浮点数）</td>
+</tr>
+<tr>
+<td>g</td>
+<td>通用格式，小数用 f，大数用 e</td>
+<td>浮点数、复数、整数（自动转换为浮点数）</td>
+</tr>
+<tr>
+<td>G</td>
+<td>与 G 等价，但小数用 F，大数用 E</td>
+<td>浮点数、复数、整数（自动转换为浮点数）</td>
+</tr>
+<tr>
+<td>%</td>
+<td>百分比格式，数字自动乘上 100 后按 f 格式排版，并加 % 后缀</td>
+<td>浮点数、整数（自动转换为浮点数</td>
+</tr>
+</tbody></table>
+<p><strong>数学符号相关格式描述符</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">格式描述符</th>
+<th align="left">含义与作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>+</code></td>
+<td align="left">负数前加负号（<code>-</code>），正数前加正号（<code>+</code>）</td>
+</tr>
+<tr>
+<td align="left"><code>-</code></td>
+<td align="left">负数前加负号（<code>-</code>），正数前不加任何符号（默认）</td>
+</tr>
+<tr>
+<td align="left"><code> </code>（空格）</td>
+<td align="left">负数前加负号（<code>-</code>），正数前加一个空格</td>
+</tr>
+<tr>
+<td align="left"><code>#</code></td>
+<td align="left">切换数字显示方式, 用于控制是否显示进制前缀, 例如二进制’0b’, 八进制的’0o’和十六进制的’0x’</td>
+</tr>
+</tbody></table>
+<p><strong>注:</strong></p>
+<p>空格或其他符合也可作为宽度占位符(例如下文<code>对齐和填充字符</code>部分用法).</p>
+<p>千分位占位符也可以使用<code>_</code>.</p>
+<p>8 16 进制的占位符如果使用大写格式, 那么打印出的进制前缀也会变为相应大写格式.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> randint<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;前导0、统一宽度、千分位、八进制、十六进制、带前缀大写十六进制、二进制&quot;</span>)<br><br>nlist = [randint(-<span class="hljs-number">9999</span>, <span class="hljs-number">99999</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>)]<br><span class="hljs-keyword">for</span> i, n <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(nlist):<br>    line = <span class="hljs-string">f&quot;No.<span class="hljs-subst">&#123;i:04d&#125;</span>:<span class="hljs-subst">&#123;n:8d&#125;</span>:<span class="hljs-subst">&#123;n:<span class="hljs-number">8</span>,d&#125;</span>:<span class="hljs-subst">&#123;n:8o&#125;</span>:<span class="hljs-subst">&#123;n:8x&#125;</span>:<span class="hljs-subst">&#123;n:#8X&#125;</span>:<span class="hljs-subst">&#123;n:020b&#125;</span>&quot;</span><br>    <span class="hljs-built_in">print</span>(line)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">前导0、统一宽度、千分位、八进制、十六进制、带前缀大写十六进制、二进制
+No.0000:   64972:  64,972:  176714:    fdcc:  0XFDCC:00001111110111001100
+No.0001:   92916:  92,916:  265364:   16af4: 0X16AF4:00010110101011110100
+No.0002:   99560:  99,560:  302350:   184e8: 0X184E8:00011000010011101000
+No.0003:   23767:  23,767:   56327:    5cd7:  0X5CD7:00000101110011010111
+No.0004:   33628:  33,628:  101534:    835c:  0X835C:00001000001101011100
+No.0005:     710:     710:    1306:     2c6:   0X2C6:00000000001011000110
+No.0006:   47749:  47,749:  135205:    ba85:  0XBA85:00001011101010000101
+No.0007:   56646:  56,646:  156506:    dd46:  0XDD46:00001101110101000110
+No.0008:   22526:  22,526:   53776:    57fe:  0X57FE:00000101011111111110
+No.0009:   34263:  34,263:  102727:    85d7:  0X85D7:00001000010111010111
+</code></pre>
+<h3 id="浮点数格式化"><a href="#浮点数格式化" class="headerlink" title="浮点数格式化"></a>浮点数格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> uniform<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;前导0、统一宽度右对齐、千分位、小数点后固定位数、百分比&quot;</span>)<br><br>flist = [uniform(-<span class="hljs-number">999</span>, <span class="hljs-number">9999</span>) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>)]<br><span class="hljs-keyword">for</span> i, f <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(flist):<br>    line = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;f:<span class="hljs-number">012.2</span>f&#125;</span>:<span class="hljs-subst">&#123;f:<span class="hljs-number">12.3</span>f&#125;</span>:<span class="hljs-subst">&#123;f:<span class="hljs-number">12</span>,<span class="hljs-number">.2</span>f&#125;</span>:<span class="hljs-subst">&#123;f:<span class="hljs-number">12.1</span>%&#125;</span>&quot;</span><br>    <span class="hljs-built_in">print</span>(line)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">前导0、统一宽度右对齐、千分位、小数点后固定位数、百分比
+000004842.42:    4842.417:    4,842.42:   484241.7%
+000003106.63:    3106.634:    3,106.63:   310663.4%
+000009213.21:    9213.205:    9,213.21:   921320.5%
+000008040.67:    8040.671:    8,040.67:   804067.1%
+000006086.32:    6086.322:    6,086.32:   608632.2%
+000005251.10:    5251.105:    5,251.10:   525110.5%
+000008219.07:    8219.072:    8,219.07:   821907.2%
+000007046.32:    7046.325:    7,046.32:   704632.5%
+000000192.89:     192.888:      192.89:    19288.8%
+000006164.21:    6164.208:    6,164.21:   616420.8%
+</code></pre>
+<h3 id="时间格式化"><a href="#时间格式化" class="headerlink" title="时间格式化"></a>时间格式化</h3><p>常用的特殊格式类型：<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">标准库 <code>datetime</code></a> 给定的用于排版时间信息的格式类型，适用于 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/datetime.html#date-objects"><code>date</code></a>、<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/datetime.html#datetime-objects"><code>datetime</code></a> 和 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/datetime.html#time-objects"><code>time</code></a> 对象</p>
+<table>
+<thead>
+<tr>
+<th>格式描述符</th>
+<th>含义</th>
+<th>显示样例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%a</td>
+<td>星期几（缩写）</td>
+<td>‘Sun’</td>
+</tr>
+<tr>
+<td>%A</td>
+<td>星期几（全名）</td>
+<td>‘Sunday’</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>星期几（数字，0 是周日，6 是周六）</td>
+<td>‘0’</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>星期几（数字，1 是周一，7 是周日）</td>
+<td>‘7’</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>日（数字，以 0 补足两位）</td>
+<td>‘07’</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>月（缩写）</td>
+<td>‘Aug’</td>
+</tr>
+<tr>
+<td>%B</td>
+<td>月（全名）</td>
+<td>‘August’</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>月（数字，以 0 补足两位）</td>
+<td>‘08’</td>
+</tr>
+<tr>
+<td>%y</td>
+<td>年（后两位数字，以 0 补足两位）</td>
+<td>‘14’</td>
+</tr>
+<tr>
+<td>%Y</td>
+<td>年（完整数字，不补零）</td>
+<td>‘2014’</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>小时（24 小时制，以 0 补足两位）</td>
+<td>‘23’</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>小时（12 小时制，以 0 补足两位）</td>
+<td>‘11’</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>上午&#x2F;下午</td>
+<td>‘PM’</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>分钟（以 0 补足两位）</td>
+<td>‘23’</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>秒钟（以 0 补足两位）</td>
+<td>‘56’</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>微秒（以 0 补足六位）</td>
+<td>‘553777’</td>
+</tr>
+<tr>
+<td>%z</td>
+<td>UTC 偏移量（格式是 ±HHMM[SS]，未指定时区则返回空字符串）</td>
+<td>‘+1030’</td>
+</tr>
+<tr>
+<td>%Z</td>
+<td>时区名（未指定时区则返回空字符串）</td>
+<td>‘EST’</td>
+</tr>
+<tr>
+<td>%j</td>
+<td>一年中的第几天（以 0 补足三位）</td>
+<td>‘195’</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>一年中的第几周（以全年首个周日后的星期为第 0 周，以 0 补足两位）</td>
+<td>‘27’</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>一年中的第几周（以全年首个周一后的星期为第 0 周，以 0 补足两位）</td>
+<td>‘28’</td>
+</tr>
+<tr>
+<td>%V</td>
+<td>一年中的第几周（以全年首个包含 1 月 4 日的星期为第 1 周，以 0 补足两位）</td>
+<td>‘28’</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> datetime<br>e = datetime.datetime.today()<br><span class="hljs-string">f&#x27;the time is <span class="hljs-subst">&#123;e:%Y-%m-%d (%a) %H:%M:%S&#125;</span>&#x27;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code class="hljs">&#39;the time is 2022-12-29 (Thu) 22:23:58&#39;
+</code></pre>
+<p>格式化打印各种数据类型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> faker <span class="hljs-keyword">import</span> Faker<br><br>f = Faker()<br><span class="hljs-comment"># 使用faker库生成所需数据</span><br>word = f.word()  <span class="hljs-comment"># 生成一个单词</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;str: &#x27;<span class="hljs-subst">&#123;word&#125;</span>&#x27; in a line&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;int: <span class="hljs-subst">&#123;f.pyint()&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;float: <span class="hljs-subst">&#123;f.pyfloat()&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;bool: <span class="hljs-subst">&#123;f.pybool()&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;list: <span class="hljs-subst">&#123;f.words()&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;dict: <span class="hljs-subst">&#123;f.pydict(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;set: <span class="hljs-subst">&#123;f.pyset(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;tuple<span class="hljs-subst">&#123;f.pytuple(<span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>)&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">str: &#39;animal&#39; in a line
+int: 3387
+float: -31220036492.2902
+bool: False
+list: [&#39;expect&#39;, &#39;shake&#39;, &#39;there&#39;]
+dict: &#123;&#39;yard&#39;: 7553&#125;
+set: &#123;106&#125;
+tuple(2603, 8262, 3320)
+</code></pre>
+<h3 id="对齐和填充字符"><a href="#对齐和填充字符" class="headerlink" title="对齐和填充字符"></a>对齐和填充字符</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> faker <span class="hljs-keyword">import</span> Faker<br><br>f = Faker()<br>namelist = [f.first_name() <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>)]<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;<span class="hljs-string">&#x27;-&#x27;</span> * <span class="hljs-number">10</span>&#125;</span><span class="hljs-subst">&#123;<span class="hljs-string">&#x27;左中右对齐&#x27;</span>&#125;</span><span class="hljs-subst">&#123;<span class="hljs-string">&#x27;-&#x27;</span> * <span class="hljs-number">10</span>&#125;</span>&quot;</span>)<br><span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> namelist:<br>    line = <span class="hljs-string">f&quot;|<span class="hljs-subst">&#123;name:&lt;<span class="hljs-number">16</span>&#125;</span>|<span class="hljs-subst">&#123;name:^<span class="hljs-number">16</span>&#125;</span>|<span class="hljs-subst">&#123;name:&gt;<span class="hljs-number">16</span>&#125;</span>|&quot;</span><br>    <span class="hljs-built_in">print</span>(line)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;\n<span class="hljs-subst">&#123;<span class="hljs-string">&#x27;-&#x27;</span> * <span class="hljs-number">10</span>&#125;</span><span class="hljs-subst">&#123;<span class="hljs-string">&#x27;填充字符&#x27;</span>&#125;</span><span class="hljs-subst">&#123;<span class="hljs-string">&#x27;-&#x27;</span> * <span class="hljs-number">10</span>&#125;</span>&quot;</span>)<br><span class="hljs-keyword">for</span> i, name <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(namelist):<br>    line = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;i&#125;</span><span class="hljs-subst">&#123;name:.&gt;<span class="hljs-number">16</span>&#125;</span>&quot;</span><br>    <span class="hljs-built_in">print</span>(line)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">----------左中右对齐----------
+|James           |     James      |           James|
+|Luis            |      Luis      |            Luis|
+|Keith           |     Keith      |           Keith|
+|Kimberly        |    Kimberly    |        Kimberly|
+|Lauren          |     Lauren     |          Lauren|
+|Gregory         |    Gregory     |         Gregory|
+|Daniel          |     Daniel     |          Daniel|
+|Adam            |      Adam      |            Adam|
+|Emily           |     Emily      |           Emily|
+|Jessica         |    Jessica     |         Jessica|
+
+----------填充字符----------
+0...........James
+1............Luis
+2...........Keith
+3........Kimberly
+4..........Lauren
+5.........Gregory
+6..........Daniel
+7............Adam
+8...........Emily
+9.........Jessica
+</code></pre>
+<p>此处<code>f&quot;\n&#123;&#39;-&#39; * 10&#125;&#123;&#39;填充字符&#39;&#125;&#123;&#39;-&#39; * 10&#125;&quot;</code>可以用<code>f&quot;\n&#123;&#39;填充字符&#39;:-^24&#125;&quot;</code>替代, <em>f-string</em>的优雅之处在此刻尽显</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;\n<span class="hljs-subst">&#123;<span class="hljs-string">&#x27;填充字符并居中对齐&#x27;</span>:-^<span class="hljs-number">35</span>&#125;</span>&quot;</span>)<br><span class="hljs-keyword">for</span> i, name <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(namelist):<br>    line = <span class="hljs-string">f&quot;[<span class="hljs-subst">&#123;name:-^<span class="hljs-number">40</span>&#125;</span>]&quot;</span><br>    <span class="hljs-built_in">print</span>(line)<br><br></code></pre></td></tr></table></figure>
+
+
+<pre><code class="hljs">-------------填充字符并居中对齐-------------
+[-----------------James------------------]
+[------------------Luis------------------]
+[-----------------Keith------------------]
+[----------------Kimberly----------------]
+[-----------------Lauren-----------------]
+[----------------Gregory-----------------]
+[-----------------Daniel-----------------]
+[------------------Adam------------------]
+[-----------------Emily------------------]
+[----------------Jessica-----------------]
+</code></pre>
+<h3 id="调试阶段输出变量名及其内容"><a href="#调试阶段输出变量名及其内容" class="headerlink" title="调试阶段输出变量名及其内容"></a>调试阶段输出变量名及其内容</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 变量=值，输出</span><br>a, b = <span class="hljs-number">12</span>, <span class="hljs-number">34</span><br>s = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;a=&#125;</span>, <span class="hljs-subst">&#123;b=&#125;</span>, <span class="hljs-subst">&#123;a*a+b*b=&#125;</span>&quot;</span><br><span class="hljs-built_in">print</span>(s)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">a=12, b=34, a*a+b*b=1300
+</code></pre>
+<h3 id="嵌套调用"><a href="#嵌套调用" class="headerlink" title="嵌套调用"></a>嵌套调用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 嵌套的格式</span><br><span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> pi<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;pi:.&#123;i&#125;</span>f&#125;&quot;</span>)  <span class="hljs-comment"># f-string中可以使用变量进行动态格式化</span><br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">3
+3.1
+3.14
+3.142
+3.1416
+3.14159
+3.141593
+3.1415927
+3.14159265
+3.141592654
+</code></pre>
+<h3 id="多行f-string"><a href="#多行f-string" class="headerlink" title="多行f-string"></a>多行<code>f-string</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">name, age, lang = <span class="hljs-string">&#x27;leo&#x27;</span>, <span class="hljs-number">21</span>, <span class="hljs-string">&#x27;python&#x27;</span><br>message = (<br>    <span class="hljs-string">f&quot;Hi I&#x27;m <span class="hljs-subst">&#123;name&#125;</span>. &quot;</span><br>    <span class="hljs-string">f&quot;My age is <span class="hljs-subst">&#123;age&#125;</span>. &quot;</span><br>    <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;lang&#125;</span> is the best language.&quot;</span><br>)<br>message<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+<pre><code class="hljs">&quot;Hi I&#39;m leo. My age is 21. python is the best language.&quot;
+</code></pre>
+<h3 id="任意表达式"><a href="#任意表达式" class="headerlink" title="任意表达式"></a>任意表达式</h3><p><code>f-string</code> 是在运行时进行渲染的, 因此可以使用表达式, 函数…</p>
+<p>这将使您的代码变得更加优雅</p>
+<p>细心的您可能会发现, 上文有部分使用了此特性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">name = <span class="hljs-string">&#x27;Leo&#x27;</span><br>age = <span class="hljs-number">21</span><br><span class="hljs-built_in">print</span>(<br>    <span class="hljs-string">f&quot;My name is <span class="hljs-subst">&#123;name.lower()&#125;</span>. &quot;</span><br>    <span class="hljs-string">f&quot;Tomorrow my age will be <span class="hljs-subst">&#123;age + <span class="hljs-number">1</span>&#125;</span>&quot;</span><br>)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">My name is leo. Tomorrow my age will be 22
+</code></pre>
+<p>您甚至可以使用<code>f-string</code>来格式化您打印的对象</p>
+<p>就像这样:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, name, age, type_</span>):<br>        self.name = name<br>        self.age = age<br>        self.type_ = type_<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__str__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;&lt;<span class="hljs-subst">&#123;self.__class__.__name__&#125;</span>&gt; <span class="hljs-subst">&#123;self.name&#125;</span>, <span class="hljs-subst">&#123;self.age&#125;</span>, <span class="hljs-subst">&#123;self.type_&#125;</span>&quot;</span><br><br><br>p = Person(<span class="hljs-string">&quot;leo&quot;</span>, <span class="hljs-number">21</span>, <span class="hljs-string">&quot;student&quot;</span>)<br><span class="hljs-built_in">print</span>(p)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">&lt;Person&gt; leo, 21, student
+</code></pre>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>在使用 f-string 时大括号内所用的引号不能和大括号外的引号定界符冲突, 根据情况切换’和”, 如果仍不满足需求可以使用’’’和”””</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">f&#x27;I am <span class="hljs-subst">&#123;<span class="hljs-string">&quot;Eric&quot;</span>&#125;</span>&#x27;</span><br><span class="hljs-string">&#x27;I am Eric&#x27;</span><br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">f&#x27;I am <span class="hljs-subst">&#123;<span class="hljs-string">&#x27;Eric&#x27;</span>&#125;</span>&#x27;</span><br>  File <span class="hljs-string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="hljs-number">1</span><br>    <span class="hljs-string">f&#x27;I am <span class="hljs-subst">&#123;<span class="hljs-string">&#x27;Eric&#x27;</span>&#125;</span>&#x27;</span><br>                ^<br>SyntaxError: invalid syntax<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">f&quot;He said <span class="hljs-subst">&#123;<span class="hljs-string">&quot;I&#x27;m Eric&quot;</span>&#125;</span>&quot;</span><br>  File <span class="hljs-string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="hljs-number">1</span><br>    <span class="hljs-string">f&quot;He said <span class="hljs-subst">&#123;<span class="hljs-string">&quot;I&#x27;m Eric&quot;</span>&#125;</span>&quot;</span><br>                ^<br>SyntaxError: invalid syntax<br><br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">f&#x27;He said <span class="hljs-subst">&#123;<span class="hljs-string">&quot;I&#x27;m Eric&quot;</span>&#125;</span>&#x27;</span><br>  File <span class="hljs-string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="hljs-number">1</span><br>    <span class="hljs-string">f&#x27;He said <span class="hljs-subst">&#123;<span class="hljs-string">&quot;I&#x27;m Eric&quot;</span>&#125;</span>&#x27;</span><br>                  ^<br>SyntaxError: invalid syntax<br><br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">f&quot;&quot;&quot;He said <span class="hljs-subst">&#123;<span class="hljs-string">&quot;I&#x27;m Eric&quot;</span>&#125;</span>&quot;&quot;&quot;</span><br><span class="hljs-string">&quot;He said I&#x27;m Eric&quot;</span><br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">f&#x27;&#x27;&#x27;He said <span class="hljs-subst">&#123;<span class="hljs-string">&quot;I&#x27;m Eric&quot;</span>&#125;</span>&#x27;&#x27;&#x27;</span><br><span class="hljs-string">&quot;He said I&#x27;m Eric&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>当您想要在f-string中打印<code>&#123;&#125;</code>时, 需要使用<code>&#123;&#123;&#125;&#125;</code>, 此时双括号内部的内容将不会被渲染 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-string">f&quot;&#123;&#123;12 + 3&#125;&#125;&quot;</span><br><span class="hljs-string">&#x27;&#123;12 + 3&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="conversion-用法"><a href="#conversion-用法" class="headerlink" title="conversion 用法"></a>conversion 用法</h3><p>指定了转换符时，表达式求值的结果会先转换，再格式化。转换符 <code>&#39;!s&#39;</code> 调用 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/stdtypes.html#str"><code>str()</code></a> 转换求值结果，<code>&#39;!r&#39;</code> 调用 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#repr"><code>repr()</code></a>，<code>&#39;!a&#39;</code> 调用 <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/functions.html#ascii"><code>ascii()</code></a>。</p>
+<p>默认情况下，f-string 将使用 str()，但如果包含转换标志，则可以确保它们使用 repr()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, first_name, last_name, age</span>):<br>        self.first_name = first_name<br>        self.last_name = last_name<br>        self.age = age<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__str__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.first_name&#125;</span> <span class="hljs-subst">&#123;self.last_name&#125;</span> is <span class="hljs-subst">&#123;self.age&#125;</span>.&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__repr__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.first_name&#125;</span> <span class="hljs-subst">&#123;self.last_name&#125;</span> is <span class="hljs-subst">&#123;self.age&#125;</span>. made by repr!&quot;</span><br><br><br><span class="hljs-comment"># 调用</span><br>person01 = People(<span class="hljs-string">&quot;Wang&quot;</span>, <span class="hljs-string">&quot;Leo&quot;</span>, <span class="hljs-string">&quot;21&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;person01&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;person01!r&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">Wang Leo is 21.
+Wang Leo is 21. made by repr!
+</code></pre>
+<p><code>ascii(object)</code><br>与 repr() 类似，返回一个字符串，表示对象的可打印形式，但在 repr() 返回的字符串中，非 ASCII 字符会用 \x、\u 和 \U 进行转义。生成的字符串类似于 Python 2 中 repr() 的返回结果。</p>
+<p><code>ascii(object)</code><br>与 repr() 类似，返回一个字符串，表示对象的可打印形式，但在 repr() 返回的字符串中，非 ASCII 字符会用 \x、\u 和 \U 进行转义。生成的字符串类似于 Python 2 中 repr() 的返回结果。</p>
+<p><strong>!a</strong> 用法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">a_str = <span class="hljs-string">&quot;阿多 🔥 hold the door&quot;</span><br>b_str = <span class="hljs-string">&quot;💯 ✔ 🌈&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;a_str!a&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;b_str!a&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">&#39;\u963f\u591a \U0001f525 hold the door&#39;
+&#39;\U0001f4af \u2714 \U0001f308&#39;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">People</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, first_name, last_name, age</span>):<br>        self.first_name = first_name<br>        self.last_name = last_name<br>        self.age = age<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__str__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.first_name&#125;</span> <span class="hljs-subst">&#123;self.last_name&#125;</span> is <span class="hljs-subst">&#123;self.age&#125;</span>.&quot;</span><br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__repr__</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.first_name&#125;</span> <span class="hljs-subst">&#123;self.last_name&#125;</span> is <span class="hljs-subst">&#123;self.age&#125;</span>. made by repr!&quot;</span><br><br><br><span class="hljs-comment"># 调用</span><br>person01 = People(<span class="hljs-string">&quot;Wang&quot;</span>, <span class="hljs-string">&quot;Leo&quot;</span>, <span class="hljs-string">&quot;21&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;person01&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;person01!r&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">Wang Leo is 21.
+Wang Leo is 21. made by repr!
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">a_str = <span class="hljs-string">&quot;阿多 🔥 hold the door&quot;</span><br>b_str = <span class="hljs-string">&quot;💯 ✔ 🌈&quot;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;a_str!a&#125;</span>&quot;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;b_str!a&#125;</span>&quot;</span>)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">&#39;\u963f\u591a \U0001f525 hold the door&#39;
+&#39;\U0001f4af \u2714 \U0001f308&#39;
+</code></pre>
+<h2 id="旧时代的格式化字符串"><a href="#旧时代的格式化字符串" class="headerlink" title="旧时代的格式化字符串"></a>旧时代的格式化字符串</h2><p>在 Python 3.6 之前，有两种将 Python 表达式嵌入到字符串文本中进行格式化的主要方法：</p>
+<ul>
+<li><code>％-formatting</code></li>
+<li><code>str.format()</code></li>
+</ul>
+<p>这两种方法都具有一定的局限性</p>
+<p>从 Python 3.6 开始，<code>f-string</code> 作为格式化字符串的一种很好的新方法。与其他格式化方式相比，</p>
+<p>不仅更易读，更简洁，不易出错，而且速度更快！</p>
+<h3 id="formatting"><a href="#formatting" class="headerlink" title="%-formatting"></a><code>%-formatting</code></h3><p>字符串支持使用<code>%</code>进行格式化, 例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">name = <span class="hljs-string">&#x27;leo&#x27;</span><br>msg = <span class="hljs-string">&quot;Hello, I&#x27;m %s.&quot;</span> % name<br><span class="hljs-built_in">print</span>(msg)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">Hello, I&#39;m leo.
+</code></pre>
+<p>为什么 <code>%-formatting</code> 不好用</p>
+<p>上面刚刚看到的代码示例足够易读。</p>
+<p>但是，一旦你开始使用几个参数和更长的字符串，你的代码将很快变得不太容易阅读。</p>
+<p>这种格式不是很好，因为它是冗长的，会导致错误，比如不能正确显示元组或字典, 不方便找出每个占位符对应的变量。</p>
+<p>幸运的是，未来有更光明的日子 — 3.6 版本, <code>f-string</code>出现了。</p>
+<p>如你所见, 使用<code>f-string</code>后代码变得更加直观</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">first_name = <span class="hljs-string">&quot;Eric&quot;</span><br>last_name = <span class="hljs-string">&quot;Idle&quot;</span><br>age = <span class="hljs-number">8</span><br>profession = <span class="hljs-string">&quot;comedian&quot;</span><br>affiliation = <span class="hljs-string">&quot;Monty Python&quot;</span><br>info1 = <span class="hljs-string">&quot;Hello, %s %s. You are %02d. You are a %s. You were a member of %s.&quot;</span> % (<br>    first_name, last_name, age, profession, affiliation)<br>info2 = <span class="hljs-string">f&quot;Hello, <span class="hljs-subst">&#123;first_name&#125;</span> <span class="hljs-subst">&#123;last_name&#125;</span>. You are <span class="hljs-subst">&#123;age:02d&#125;</span>. You are a <span class="hljs-subst">&#123;profession&#125;</span>. You were a member of <span class="hljs-subst">&#123;affiliation&#125;</span>.&quot;</span><br><span class="hljs-built_in">print</span>(info1)<br><span class="hljs-built_in">print</span>(info2)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">Hello, Eric Idle. You are 08. You are a comedian. You were a member of Monty Python.
+Hello, Eric Idle. You are 08. You are a comedian. You were a member of Monty Python.
+</code></pre>
+<h3 id="str-format"><a href="#str-format" class="headerlink" title="str.format()"></a><code>str.format()</code></h3><p>这种字符串格式化方式早在 2.6 版本就已经引入</p>
+<p><code>str.format()</code>是对<code>%-formatting</code>的改进。它使用正常的函数调用语法，并且可以通过对要转换为字符串的对象的**format **（）方法进行扩展。</p>
+<p>使用 str.format()，被替换字段用大括号标记：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">name, age = <span class="hljs-string">&#x27;leo&#x27;</span>, <span class="hljs-number">8</span><br>msg = <span class="hljs-string">&quot;Hello, &#123;&#125;. I&#x27;m &#123;:02d&#125;.&quot;</span>.<span class="hljs-built_in">format</span>(name, age)<br><span class="hljs-built_in">print</span>(msg)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">Hello, leo. I&#39;m 08.
+</code></pre>
+<p>并且您可以使用索引来决定使用变量的顺序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">name, age = <span class="hljs-string">&#x27;leo&#x27;</span>, <span class="hljs-number">8</span><br>msg1 = <span class="hljs-string">&quot;Hello, &#123;1&#125;. my info is: &#123;1&#125;-&#123;0:02d&#125;.&quot;</span>.<span class="hljs-built_in">format</span>(age, name)<br><span class="hljs-built_in">print</span>(msg1)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">Hello, leo. my info is: leo-08.
+</code></pre>
+<p>与 <code>%-formatting</code> 相比, <code>str.format()</code> 完全可以说是一个升级版本.<br>但当处理多个参数和更长的字符串时, 仍存在过于冗长, 易读性差等问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">first_name = <span class="hljs-string">&quot;Eric&quot;</span><br>last_name = <span class="hljs-string">&quot;Idle&quot;</span><br>age = <span class="hljs-number">74</span><br>profession = <span class="hljs-string">&quot;comedian&quot;</span><br>affiliation = <span class="hljs-string">&quot;Monty Python&quot;</span><br><span class="hljs-built_in">print</span>((<span class="hljs-string">&quot;Hello, &#123;first_name&#125; &#123;last_name&#125;. You are &#123;age&#125;. &quot;</span> +<br>       <span class="hljs-string">&quot;You are a &#123;profession&#125;. You were a member of &#123;affiliation&#125;.&quot;</span>)<br>      .<span class="hljs-built_in">format</span>(first_name=first_name, last_name=last_name, age=age,<br>              profession=profession, affiliation=affiliation))<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">Hello, Eric Idle. You are 74. You are a comedian. You were a member of Monty Python.
+</code></pre>
+<p><strong>性能</strong></p>
+<p>f-string 中的 f 也可以代表“速度快”。</p>
+<p>f-string 比％-formatting 和 str.format()都快。正如你已经看到的，f-string 是运行时渲染的表达式，而不是常量值。以下是文档摘录：</p>
+<blockquote>
+<p>“F-strings provide a way to embed expressions inside string literals, using a minimal syntax. It should be noted that an f-string is really an expression evaluated at run time, not a constant value. In Python source code, an f-string is a literal string, prefixed with f, which contains expressions inside braces. The expressions are replaced with their values.” (Source)</p>
+</blockquote>
+<p>在运行时，大括号内的表达式将在其自己的作用域中进行求值，然后将其与其余字符串组合在一起。</p>
+<p>以下是性能测试:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">% % timeit<br>name = <span class="hljs-string">&quot;Eric&quot;</span><br>age = <span class="hljs-number">74</span><br><span class="hljs-string">&#x27;%s is %s.&#x27;</span> % (name, age)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">227 ns ± 4.81 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">% % timeit<br>name = <span class="hljs-string">&quot;Eric&quot;</span><br>age = <span class="hljs-number">74</span><br><span class="hljs-string">&#x27;&#123;&#125; is &#123;&#125;.&#x27;</span>.<span class="hljs-built_in">format</span>(name, age)<br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">278 ns ± 3.37 ns per loop (mean ± std. dev. of 7 runs, 1,000,000 loops each)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">% % timeit<br>name = <span class="hljs-string">&quot;Eric&quot;</span><br>age = <span class="hljs-number">74</span><br><span class="hljs-string">&#x27;&#123;name&#125; is &#123;age&#125;.&#x27;</span><br><br></code></pre></td></tr></table></figure>
+
+<pre><code class="hljs">17.7 ns ± 0.0882 ns per loop (mean ± std. dev. of 7 runs, 100,000,000 loops each)
+</code></pre>
+<p>如您所见, f-string, %-formatting 和 str.format()中 f-string 是最快的</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>(排名不分先后)</p>
+<p><a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/reference/lexical_analysis.html#f-strings">官方文档 docs.python.org</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yizhuanlu9607/article/details/89530982">Python 格式化字符串 f-string f”{}{}{}”详细介绍</a></p>
+<p><a target="_blank" rel="noopener" href="https://mlln.cn/2018/05/19/python3%20f-string%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/">python3 f-string 格式化字符串的高级用法</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/c-x-a/p/10841930.html">python 中的 fstring 的 !r,!a,!s</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/chbpku/pylearn/blob/master/%E4%B8%8B%E4%B8%80%E7%AB%99Python/3-%E8%AF%AD%E6%B3%95%E5%B0%8F%E7%9F%A5%E8%AF%86/16-%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2f-string.ipynb">陈斌教授关于 f-string 的语法知识</a></p>
+<p>made by leo wang</p>
+<p>date: 2022&#x2F;12&#x2F;30</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python字符串格式化f-string</div>
+      <div>https://leo03w.github.io/2022/12/30/Python字符串格式化f-string/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Leo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/03/Docker%E5%AE%89%E8%A3%85miniconda%E9%85%8D%E7%BD%AEJupyter/" title="Docker安装miniconda配置Jupyter">
+                        <span class="hidden-mobile">Docker安装miniconda配置Jupyter</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
