@@ -16,25 +16,22 @@
   <meta name="author" content="Leo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安装并配置oh-my-zsh">
+    <meta name="description" content="常用免费公共DNS服务">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ZSH配置">
-<meta property="og:url" content="https://leo03w.github.io/2022/09/23/ZSH%20%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="常用DNS服务器">
+<meta property="og:url" content="https://leo03w.github.io/2023/02/10/%E5%B8%B8%E7%94%A8%E5%85%8D%E8%B4%B9%E5%85%AC%E5%85%B1DNS%E6%9C%8D%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Leo Blog">
-<meta property="og:description" content="安装并配置oh-my-zsh">
+<meta property="og:description" content="常用免费公共DNS服务">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://leo03w.github.io/img/zsh_colors.png">
-<meta property="article:published_time" content="2022-09-23T03:21:40.000Z">
-<meta property="article:modified_time" content="2022-09-23T03:42:01.936Z">
+<meta property="article:published_time" content="2023-02-10T05:37:44.000Z">
+<meta property="article:modified_time" content="2023-02-10T05:37:51.177Z">
 <meta property="article:author" content="Leo">
 <meta property="article:tag" content="安装配置">
-<meta property="article:tag" content="ZSH">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://leo03w.github.io/img/zsh_colors.png">
   
   
   
-  <title>ZSH配置 - Leo Blog</title>
+  <title>常用DNS服务器 - Leo Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ZSH配置"></span>
+            <span id="subtitle" data-typed-text="常用DNS服务器"></span>
           
         </div>
 
@@ -210,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-23 11:21" pubdate>
-          2022年9月23日 上午
+        <time datetime="2023-02-10 13:37" pubdate>
+          2023年2月10日 下午
         </time>
       </span>
     
@@ -222,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.1k 字
         
       </span>
     
@@ -233,7 +230,7 @@
         
         
         
-          13 分钟
+          9 分钟
         
       </span>
     
@@ -271,46 +268,260 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ZSH配置</h1>
+            <h1 style="display: none">常用DNS服务器</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="ZSH配置"><a href="#ZSH配置" class="headerlink" title="ZSH配置"></a>ZSH配置</h1><h1 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># ubuntu下</span><br>apt install -y zsh<br><span class="hljs-comment"># centos下</span><br>yum install -y zsh<br></code></pre></td></tr></table></figure>
-
-<h3 id="设置zsh为默认shell"><a href="#设置zsh为默认shell" class="headerlink" title="设置zsh为默认shell"></a>设置zsh为默认shell</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chsh -s /bin/zsh<br></code></pre></td></tr></table></figure>
-
-<h3 id="安装git-wget"><a href="#安装git-wget" class="headerlink" title="安装git, wget"></a>安装git, wget</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># ubuntu下</span><br>apt install -y git wget<br><span class="hljs-comment"># centos下</span><br>yum install -y git wget<br></code></pre></td></tr></table></figure>
-
-<h2 id="安装-oh-my-zsh"><a href="#安装-oh-my-zsh" class="headerlink" title="安装 oh-my-zsh"></a>安装 oh-my-zsh</h2><p>使用wget获取安装脚本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh<br></code></pre></td></tr></table></figure>
-
-<p>找到以下部分</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Default settings</span><br>ZSH=<span class="hljs-variable">$&#123;ZSH:-~/.oh-my-zsh&#125;</span><br>REPO=<span class="hljs-variable">$&#123;REPO:-ohmyzsh/ohmyzsh&#125;</span><br>REMOTE=<span class="hljs-variable">$&#123;REMOTE:-https://github.com/<span class="hljs-variable">$&#123;REPO&#125;</span>.git&#125;</span><br>BRANCH=<span class="hljs-variable">$&#123;BRANCH:-master&#125;</span><br></code></pre></td></tr></table></figure>
-
-<p>把中间两行修改为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">REPO=<span class="hljs-variable">$&#123;REPO:-mirrors/oh-my-zsh&#125;</span><br>REMOTE=<span class="hljs-variable">$&#123;REMOTE:-https://gitee.com/<span class="hljs-variable">$&#123;REPO&#125;</span>.git&#125;</span><br></code></pre></td></tr></table></figure>
-
-<p><code>:wq!</code> 保存 <code>sh install.sh</code> 执行</p>
-<h1 id="2-配置"><a href="#2-配置" class="headerlink" title="2. 配置"></a>2. 配置</h1><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>编辑 <code>~/.zshrc</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 解开第二行环境变量注释</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$HOME</span>/bin:/usr/local/bin:<span class="hljs-variable">$PATH</span><br><span class="hljs-comment"># 禁用自动更新</span><br>DISABLE_AUTO_UPDATE=<span class="hljs-string">&quot;true&quot;</span><br><span class="hljs-comment"># 设置皮肤</span><br>ZSH_THEME=<span class="hljs-string">&quot;steeef&quot;</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><h3 id="安装-zsh-autosuggestions-用于命令补全"><a href="#安装-zsh-autosuggestions-用于命令补全" class="headerlink" title="安装 zsh-autosuggestions 用于命令补全"></a>安装 <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions">zsh-autosuggestions</a> 用于命令补全</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://gitee.com/yantaozhao/zsh-autosuggestions.git <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions<br></code></pre></td></tr></table></figure>
-
-<p>将插件添加至配置文件<code>~/.zshrc</code>中, 将 <code>plugins=(git)</code> 替换为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">plugins=(<br>            git<br>            zsh-autosuggestions<br>        )<br></code></pre></td></tr></table></figure>
-
-<p>之后执行 <code>source ~/.zshrc</code> 即可生效 </p>
-<p>如果字体不清晰，可以修改 <code>~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</code> 内的 <code>ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=&#39;fg=240&#39;</code></p>
-<p>注: 颜色值参考</p>
-<p><img src="/img/zsh_colors.png" srcset="/img/loading.gif" lazyload alt="配色参考"></p>
-<h3 id="安装-zsh-syntax-highlighting-用于语法高亮"><a href="#安装-zsh-syntax-highlighting-用于语法高亮" class="headerlink" title="安装 zsh-syntax-highlighting 用于语法高亮"></a>安装 <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting"><code>zsh-syntax-highlighting</code></a> 用于语法高亮</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://gitee.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting<br></code></pre></td></tr></table></figure>
-
-<p>将插件添加至配置文件<code>~/.zshrc</code>中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">plugins=(    <br>             git<br>             zsh-syntax-highlighting <br>             zsh-autosuggestions<br>        )<br></code></pre></td></tr></table></figure>
-
-<h2 id="git-bash-安装zsh"><a href="#git-bash-安装zsh" class="headerlink" title="git-bash 安装zsh"></a>git-bash 安装zsh</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/laugh12321/p/15788324.html">一文搞定 Windows Terminal 设置与 zsh 安装【非WSL】</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7122882640998301733">Windows在git-bash安装zsh - 掘金</a></p>
+                <h1 id="常用免费公共DNS服务"><a href="#常用免费公共DNS服务" class="headerlink" title="常用免费公共DNS服务"></a>常用免费公共DNS服务</h1><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>IPv4</th>
+<th>IPv6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>阿里</td>
+<td>223.5.5.5223.6.6.6</td>
+<td>2400:3200::1 2400:3200:baba::1</td>
+</tr>
+<tr>
+<td>腾讯</td>
+<td>119.29.29.29182.254.116.116</td>
+<td></td>
+</tr>
+<tr>
+<td>百度</td>
+<td>180.76.76.76</td>
+<td>2400:da00::6666</td>
+</tr>
+<tr>
+<td>114纯净版</td>
+<td>114.114.114.114</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>114.114.115.115</td>
+<td></td>
+</tr>
+<tr>
+<td>114家庭版</td>
+<td>114.114.114.110</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>114.114.115.110</td>
+<td></td>
+</tr>
+<tr>
+<td>114安全版</td>
+<td>114.114.114.119</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>114.114.115.119</td>
+<td></td>
+</tr>
+<tr>
+<td>国家互联网中心</td>
+<td></td>
+<td>240c::6666240c::6644</td>
+</tr>
+<tr>
+<td>上海交通大学</td>
+<td>202.120.2.100</td>
+<td>2001:da8:8000:1:202:120:2:101</td>
+</tr>
+<tr>
+<td></td>
+<td>202.120.2.101</td>
+<td>2001:da8:8000:1:202:120:2:100</td>
+</tr>
+<tr>
+<td>中国科技大学</td>
+<td>202.38.64.1</td>
+<td>2001年:da8::666</td>
+</tr>
+<tr>
+<td>北京邮电大学</td>
+<td></td>
+<td>2001:8:202:10::36</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>2001:8:202:10::37</td>
+</tr>
+<tr>
+<td>北京科技大学</td>
+<td></td>
+<td>2001:da8:208:10::6</td>
+</tr>
+<tr>
+<td>清华大学</td>
+<td></td>
+<td>2001:da8:ff:305:20c:29ff:fe1f:a92a</td>
+</tr>
+<tr>
+<td>北京大学</td>
+<td>162.105.129.27</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>202.112.7.13</td>
+<td></td>
+</tr>
+<tr>
+<td>谷歌</td>
+<td>8.8.8.8</td>
+<td>2001:4860:4860::8888</td>
+</tr>
+<tr>
+<td></td>
+<td>8.8.4.4</td>
+<td>2001:4860:4860::8844</td>
+</tr>
+<tr>
+<td>CloudFlare</td>
+<td>1.1.1.1</td>
+<td>2606:4700:4700::1111</td>
+</tr>
+<tr>
+<td></td>
+<td>1.0.0.1</td>
+<td>2606:4700:4700::1001</td>
+</tr>
+<tr>
+<td>IBM</td>
+<td>9.9.9.9</td>
+<td>2620:fe::fe2620:fe::9</td>
+</tr>
+<tr>
+<td></td>
+<td>149.112.112.112</td>
+<td></td>
+</tr>
+<tr>
+<td>微软</td>
+<td>4.2.2.1</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>4.2.2.2</td>
+<td></td>
+</tr>
+<tr>
+<td>台湾网卡</td>
+<td>101.101.101.101</td>
+<td></td>
+</tr>
+<tr>
+<td>CNNIC</td>
+<td>1.2.4.8</td>
+<td>2001:dc7:1000::1</td>
+</tr>
+<tr>
+<td></td>
+<td>210.2.4.8</td>
+<td></td>
+</tr>
+<tr>
+<td>V2EX</td>
+<td>199.91.73.222</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>178.79.131.110</td>
+<td></td>
+</tr>
+<tr>
+<td>打开</td>
+<td>208.67.222.222</td>
+<td>2620:0:ccc::22620:0ccd::2</td>
+</tr>
+<tr>
+<td></td>
+<td>208.67.220.220</td>
+<td></td>
+</tr>
+<tr>
+<td>自由人</td>
+<td>80.80.80.80</td>
+<td></td>
+</tr>
+<tr>
+<td>One拦截版</td>
+<td>117.50.11.11</td>
+<td>2620:0:ccc::2</td>
+</tr>
+<tr>
+<td></td>
+<td>52.80.66.66</td>
+<td></td>
+</tr>
+<tr>
+<td>One纯净版</td>
+<td>117.50.10.10</td>
+<td>2620:0:ccc::2</td>
+</tr>
+<tr>
+<td></td>
+<td>52.80.52.52</td>
+<td></td>
+</tr>
+<tr>
+<td>香港宽频</td>
+<td>203.80.96.10</td>
+<td></td>
+</tr>
+<tr>
+<td>人</td>
+<td>216.146.35.35</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>216.146.36.36</td>
+<td></td>
+</tr>
+<tr>
+<td>自在</td>
+<td>8.26.56.26</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>8.20.247.20</td>
+<td></td>
+</tr>
+<tr>
+<td>诺顿</td>
+<td>199.85.126.10</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>199.85.127.10</td>
+<td></td>
+</tr>
+<tr>
+<td>Yandex</td>
+<td>77.88.8.8</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>77.88.8.1</td>
+<td></td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -329,17 +540,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B7%A5%E5%85%B7/" class="category-chain-item">工具</a>
-  
-  
-
-      </span>
-    
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="category-chain-item">环境配置</a>
+  <a href="/categories/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="category-chain-item">安装配置</a>
   
   
 
@@ -356,8 +557,6 @@
       
         <a href="/tags/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">#安装配置</a>
       
-        <a href="/tags/ZSH/">#ZSH</a>
-      
     </div>
   
 </div>
@@ -368,8 +567,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ZSH配置</div>
-      <div>https://leo03w.github.io/2022/09/23/ZSH 配置/</div>
+      <div>常用DNS服务器</div>
+      <div>https://leo03w.github.io/2023/02/10/常用免费公共DNS服务/</div>
     </div>
     <div class="license-meta">
       
@@ -381,7 +580,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月23日</div>
+          <div>2023年2月10日</div>
         </div>
       
       
@@ -413,18 +612,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/23/Golang%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" title="Golang安装与配置">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Golang安装与配置</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/23/Docker%E5%8F%AF%E8%A7%86%E5%8C%96%E5%B7%A5%E5%85%B7portainer/" title="Docker可视化管理工具">
-                        <span class="hidden-mobile">Docker可视化管理工具</span>
+                      <a href="/2022/12/30/Python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F%E5%8C%96f-string/" title="Python字符串格式化f-string">
+                        <span class="hidden-mobile">Python字符串格式化f-string</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

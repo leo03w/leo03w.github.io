@@ -24,7 +24,7 @@
 <meta property="og:description" content="Docker安装Redis1. 准备工作1docker pull redis">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-23T00:21:40.000Z">
-<meta property="article:modified_time" content="2023-01-05T10:37:23.832Z">
+<meta property="article:modified_time" content="2023-01-05T11:02:00.671Z">
 <meta property="article:author" content="Leo">
 <meta property="article:tag" content="安装配置">
 <meta property="article:tag" content="Docker">
@@ -232,7 +232,7 @@
         
         
         
-          305 分钟
+          306 分钟
         
       </span>
     
@@ -280,16 +280,18 @@
 <span id="more"></span>
 
 <p>创建配置文件目录, 配置文件实例见文章底部</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /usr/local/redis/myredis<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /usr/local/redis/conf<br></code></pre></td></tr></table></figure>
 
 <p>创建数据目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /usr/local/redis/myredis/data<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /usr/local/redis/data<br></code></pre></td></tr></table></figure>
 
 <h2 id="2-启动容器"><a href="#2-启动容器" class="headerlink" title="2. 启动容器"></a>2. 启动容器</h2><p>无配置文件启动</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -itd --name myredis -p 6379:6379 redis<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run -itd --name redis -p 6379:6379 redis --appendonly <span class="hljs-built_in">yes</span> --maxmemory 100mb --requirepass 123456<br></code></pre></td></tr></table></figure>
+
 <p>带配置文件启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo docker run \<br>	 --restart=always \<br>	 --log-opt max-size=100m \<br>	 --log-opt max-file=2 \<br>   -p 6379:6379 \<br>	 --name redis \<br>	 -v /usr/local/redis/redis:/etc/redis \<br>	 -v /usr/local/redis/redis/data:/data \<br>	 -d redis redis-server /etc/redis/redis.conf \<br>	 --appendonly <span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo docker run \<br>	 --restart=always \<br>	 --log-opt max-size=100m \<br>	 --log-opt max-file=2 \<br>   -p 6379:6379 \<br>	 --name redis \<br>	 -v /usr/local/redis/conf:/etc/redis \<br>	 -v /usr/local/redis/data:/data \<br>	 -d redis redis-server /etc/redis/redis.conf \<br>	 --appendonly <span class="hljs-built_in">yes</span> \<br>	 --requirepass 123456 \<br>	 --maxmemory 100mb<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>–restart&#x3D;always 总是开机启动<br>–log是日志方面的<br>-p 6379:6379 将6379端口挂载出去<br>–name 给这个容器取一个名字<br>-v 数据卷挂载<br>&#x2F;usr&#x2F;local&#x2F;redis&#x2F;myredis&#x2F;myredis.conf:&#x2F;etc&#x2F;redis&#x2F;redis.conf 这里是将 liunx 路径下的myredis.conf 和redis下的redis.conf 挂载在一起。<br>&#x2F;usr&#x2F;local&#x2F;redis&#x2F;myredis&#x2F;data:&#x2F;data 这个同上<br>-d redis 表示后台启动redis<br>redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf 以配置文件启动redis，加载容器内的conf文件，最终找到的是挂载的目录 &#x2F;etc&#x2F;redis&#x2F;redis.conf 也就是liunx下的&#x2F;home&#x2F;redis&#x2F;myredis&#x2F;myredis.conf<br>–appendonly yes 开启redis 持久化<br>–requirepass ****** 设置密码 （如果你是通过docker 容器内部连接的话，就随意，可设可不设。但是如果想向外开放的话，一定要设置</p>
