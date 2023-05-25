@@ -161,9 +161,9 @@
       
         <tags>
             
-            <tag> CentOS </tag>
-            
             <tag> 安装配置 </tag>
+            
+            <tag> CentOS </tag>
             
             <tag> Ubuntu </tag>
             
@@ -331,9 +331,9 @@
       
         <tags>
             
-            <tag> CentOS </tag>
-            
             <tag> 安装配置 </tag>
+            
+            <tag> CentOS </tag>
             
             <tag> Hadoop </tag>
             
@@ -355,18 +355,18 @@
           
           <category> 环境配置 </category>
           
-          <category> 换源 </category>
-          
           <category> CentOS </category>
+          
+          <category> 换源 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> 配置 </tag>
-            
             <tag> CentOS </tag>
+            
+            <tag> 配置 </tag>
             
         </tags>
       
@@ -610,9 +610,9 @@
     
     
     <entry>
-      <title>Leo profile</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title>读书</title>
+      <link href="/reading/index.html"/>
+      <url>/reading/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -621,9 +621,9 @@
     
     
     <entry>
-      <title>读书</title>
-      <link href="/reading/index.html"/>
-      <url>/reading/index.html</url>
+      <title>Leo profile</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
