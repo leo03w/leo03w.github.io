@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="Leo Blog">
 <meta property="og:description" content="Docker安装miniconda配置Jupyter">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="b:\02_Important\Web\github_page\blog\source_posts\docker%E5%AE%89%E8%A3%85miniconda.assets\jupyter%E6%8F%92%E4%BB%B6.jpg">
+<meta property="og:image" content="https://leo03w.github.io/jupyter%E6%8F%92%E4%BB%B6.jpg">
 <meta property="article:published_time" content="2022-12-03T03:22:40.000Z">
-<meta property="article:modified_time" content="2022-12-03T10:27:55.660Z">
+<meta property="article:modified_time" content="2023-05-25T09:26:09.420Z">
 <meta property="article:author" content="Leo">
 <meta property="article:tag" content="安装配置">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Jupyter">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="b:\02_Important\Web\github_page\blog\source_posts\docker%E5%AE%89%E8%A3%85miniconda.assets\jupyter%E6%8F%92%E4%BB%B6.jpg">
+<meta name="twitter:image" content="https://leo03w.github.io/jupyter%E6%8F%92%E4%BB%B6.jpg">
   
   
   
@@ -327,7 +327,7 @@
 
 <h2 id="选取插件控制器："><a href="#选取插件控制器：" class="headerlink" title="选取插件控制器："></a>选取插件控制器：</h2><p> 推荐以下插件：</p>
 <p>Table of Contents (2)：根据markdown的标题栏自动生成目录，有个按钮，可以自动添加数字编号；<br>Code prettify：对代码进行格式化；<br>Collapsible Headings：可以根据headings折叠区域；<br>Codefolding：可以对代码块进行折叠；<br>ScrollDown：当代码输出内容过长，自动下拉滚动条；</p>
-<p><img src="B:\02_Important\Web\github_page\blog\source_posts\docker安装miniconda.assets\jupyter插件.jpg" srcset="/img/loading.gif" lazyload alt="jupyter插件">其他功能自行查找示例！<br> 下面配置工作目录，首次打开会是根目录‘&#x2F;’下的工作环境，不太方便，按个人需求配置。</p>
+<p><img src="/jupyter%E6%8F%92%E4%BB%B6.jpg" srcset="/img/loading.gif" lazyload alt="jupyter插件">其他功能自行查找示例！<br> 下面配置工作目录，首次打开会是根目录‘&#x2F;’下的工作环境，不太方便，按个人需求配置。</p>
 <h2 id="编辑-x2F-root-x2F-jupyter-x2F-jupyter-notebook-config-py"><a href="#编辑-x2F-root-x2F-jupyter-x2F-jupyter-notebook-config-py" class="headerlink" title="编辑&#x2F;root&#x2F;.jupyter&#x2F;jupyter_notebook_config.py"></a>编辑&#x2F;root&#x2F;.jupyter&#x2F;jupyter_notebook_config.py</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vim <span class="hljs-regexp">/root/</span>.jupyter/jupyter_notebook_config.py<br></code></pre></td></tr></table></figure>
 
 <h2 id="修改路径"><a href="#修改路径" class="headerlink" title="修改路径"></a>修改路径</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">c.NotebookApp.notebook_dir</span> = <span class="hljs-string">&#x27;XXX&#x27;</span><br></code></pre></td></tr></table></figure>

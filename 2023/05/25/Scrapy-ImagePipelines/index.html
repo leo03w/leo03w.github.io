@@ -23,21 +23,21 @@
 <meta property="og:site_name" content="Leo Blog">
 <meta property="og:description" content="pipeline执行时先调用父类的process_item(self, item, spider)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://leo03w.github.io/Scrapy_ImagePipelines.assets/image-202305241401508991.png">
-<meta property="og:image" content="https://leo03w.github.io/Scrapy_ImagePipelines.assets/image-202305241429277291.png">
-<meta property="og:image" content="https://leo03w.github.io/Scrapy_ImagePipelines.assets/image-202305241429573701.png">
-<meta property="og:image" content="https://leo03w.github.io/Scrapy_ImagePipelines.assets/image-202305241425103981.png">
-<meta property="og:image" content="https://leo03w.github.io/Scrapy_ImagePipelines.assets/image-20230524162409810.png">
-<meta property="og:image" content="https://leo03w.github.io/Scrapy_ImagePipelines.assets/image-20230524163616352.png">
-<meta property="og:image" content="https://leo03w.github.io/Scrapy_ImagePipelines.assets/image-20230524173253108.png">
+<meta property="og:image" content="https://leo03w.github.io/image-202305241401508991.png">
+<meta property="og:image" content="https://leo03w.github.io/image-202305241429277291.png">
+<meta property="og:image" content="https://leo03w.github.io/image-202305241429573701.png">
+<meta property="og:image" content="https://leo03w.github.io/image-202305241425103981.png">
+<meta property="og:image" content="https://leo03w.github.io/image-20230524162409810.png">
+<meta property="og:image" content="https://leo03w.github.io/image-20230524163616352.png">
+<meta property="og:image" content="https://leo03w.github.io/image-20230524173253108.png">
 <meta property="article:published_time" content="2023-05-25T09:18:17.000Z">
-<meta property="article:modified_time" content="2023-05-25T09:22:47.449Z">
+<meta property="article:modified_time" content="2023-05-25T09:26:30.873Z">
 <meta property="article:author" content="Leo">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Scrapy">
 <meta property="article:tag" content="Django">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://leo03w.github.io/Scrapy_ImagePipelines.assets/image-202305241401508991.png">
+<meta name="twitter:image" content="https://leo03w.github.io/image-202305241401508991.png">
   
   
   
@@ -284,18 +284,18 @@
               <div class="markdown-body">
                 
                 <h1 id="scrapy-ImagePipeLine"><a href="#scrapy-ImagePipeLine" class="headerlink" title="scrapy ImagePipeLine"></a>scrapy ImagePipeLine</h1><p>类继承关系如下</p>
-<p><img src="/Scrapy_ImagePipelines.assets/image-202305241401508991.png" srcset="/img/loading.gif" lazyload alt="image-20230524140150899 1"></p>
+<p><img src="/image-202305241401508991.png" srcset="/img/loading.gif" lazyload alt="image-20230524140150899 1"></p>
 <p><code>pipeline</code>执行时先调用父类的<code>process_item(self, item, spider)</code></p>
-<p><img src="/Scrapy_ImagePipelines.assets/image-202305241429277291.png" srcset="/img/loading.gif" lazyload alt="image-20230524142927729 1"></p>
+<p><img src="/image-202305241429277291.png" srcset="/img/loading.gif" lazyload alt="image-20230524142927729 1"></p>
 <h2 id="MediaPipeline-process-item方法执行过程"><a href="#MediaPipeline-process-item方法执行过程" class="headerlink" title="MediaPipeline.process_item方法执行过程"></a><code>MediaPipeline.process_item</code>方法执行过程</h2><ol>
 <li><p>调用<code>get_media_requests(item, info)</code>方法, <code>get_media_requests()</code>方法, 用于生成一个<code>scrapy.Request</code>, 将返回结果转为requests列表,</p>
-<p><img src="/Scrapy_ImagePipelines.assets/image-202305241429573701.png" srcset="/img/loading.gif" lazyload alt="image-20230524142957370 1"></p>
+<p><img src="/image-202305241429573701.png" srcset="/img/loading.gif" lazyload alt="image-20230524142957370 1"></p>
 </li>
 <li><p>将requests中的每一项交给<code>self._process_request</code>处理,</p>
 </li>
 <li><p>将处理的结果转为<code>twisted.internet.defer.DeferredList</code>列表</p>
 <p><code>DeferredList</code>的函数文档如下</p>
-<p><img src="/Scrapy_ImagePipelines.assets/image-202305241425103981.png" srcset="/img/loading.gif" lazyload alt="image-20230524142510398 1"></p>
+<p><img src="/image-202305241425103981.png" srcset="/img/loading.gif" lazyload alt="image-20230524142510398 1"></p>
 </li>
 <li><p>向该<code>DeferredList</code>添加一个回调方法<code>self.item_completed</code>, 并将<code>item, info</code>信息传递过去, 其中<code>item</code>为传入pipeline的item, <code>info</code>为spiderinfo也就是爬虫信息, 返回值就是添加的回调方法的返回值</p>
 </li>
@@ -339,15 +339,15 @@
 <h3 id="check-media-to-download方法"><a href="#check-media-to-download方法" class="headerlink" title="_check_media_to_download方法"></a><code>_check_media_to_download</code>方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">_check_media_to_download</span>(<span class="hljs-params">self, result, request, info, item</span>):<br>    <span class="hljs-keyword">if</span> result <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        <span class="hljs-keyword">return</span> result<br>    <span class="hljs-keyword">if</span> self.download_func:<br>        <span class="hljs-comment"># this ugly code was left only to support tests. <span class="hljs-doctag">TODO:</span> remove</span><br>        dfd = mustbe_deferred(self.download_func, request, info.spider)<br>        dfd.addCallbacks(<br>            callback=self.media_downloaded,<br>            callbackArgs=(request, info),<br>            callbackKeywords=&#123;<span class="hljs-string">&quot;item&quot;</span>: item&#125;,<br>            errback=self.media_failed,<br>            errbackArgs=(request, info),<br>        )<br>    <span class="hljs-keyword">else</span>:<br>        self._modify_media_request(request)<br>        dfd = self.crawler.engine.download(request)<br>        dfd.addCallbacks(<br>            callback=self.media_downloaded,<br>            callbackArgs=(request, info),<br>            callbackKeywords=&#123;<span class="hljs-string">&quot;item&quot;</span>: item&#125;,<br>            errback=self.media_failed,<br>            errbackArgs=(request, info),<br>        )<br>        <span class="hljs-keyword">return</span> dfd<br></code></pre></td></tr></table></figure>
 
 <p><code>result</code>参数存储的是<code>media_to_download</code>方法的返回值</p>
-<p><img src="/Scrapy_ImagePipelines.assets/image-20230524162409810.png" srcset="/img/loading.gif" lazyload alt="image-20230524162409810"></p>
+<p><img src="/image-20230524162409810.png" srcset="/img/loading.gif" lazyload alt="image-20230524162409810"></p>
 <p>一共有三种情况会返回None</p>
 <p>方法主要内容就是调用<code>media_downloaded</code>方法进行图片url的下载</p>
-<p><img src="/Scrapy_ImagePipelines.assets/image-20230524163616352.png" srcset="/img/loading.gif" lazyload alt="image-20230524163616352"></p>
+<p><img src="/image-20230524163616352.png" srcset="/img/loading.gif" lazyload alt="image-20230524163616352"></p>
 <p>方法内部调用<code>self.file_downloaded</code>, 这个根据使用的存储方案选取相应的文件上传实现, (这里选取<code>S3FilesStore</code>即对象存储服务)下面是重写后的<code>file_downloaded</code>用来调用<code>image_downloaded</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">file_downloaded</span>(<span class="hljs-params">self, response, request, info, *, item=<span class="hljs-literal">None</span></span>):<br>    <span class="hljs-keyword">return</span> self.image_downloaded(response, request, info, item=item)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">image_downloaded</span>(<span class="hljs-params">self, response, request, info, *, item=<span class="hljs-literal">None</span></span>):<br>    checksum = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">for</span> path, image, buf <span class="hljs-keyword">in</span> self.get_images(response, request, info, item=item):<br>        <span class="hljs-keyword">if</span> checksum <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>            buf.seek(<span class="hljs-number">0</span>)<br>            checksum = md5sum(buf)<br>        width, height = image.size<br>        self.store.persist_file(<br>            path,<br>            buf,<br>            info,<br>            meta=&#123;<span class="hljs-string">&quot;width&quot;</span>: width, <span class="hljs-string">&quot;height&quot;</span>: height&#125;,<br>            headers=&#123;<span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;image/jpeg&quot;</span>&#125;,<br>        )<br>		<span class="hljs-comment"># item[&quot;img_local&quot;] = get_public_url(path)</span><br>        <span class="hljs-comment"># 可以继承ImagesPipeline类, 重写此方法, 添加上一行, 用来在上传后将对象存储服务返回的url设置到item对象中</span><br>    <span class="hljs-keyword">return</span> checksum<br></code></pre></td></tr></table></figure>
 
 <p>处理后返回的checksum通过media_downloaded方法返回</p>
-<p><img src="/Scrapy_ImagePipelines.assets/image-20230524173253108.png" srcset="/img/loading.gif" lazyload alt="image-20230524173253108"></p>
+<p><img src="/image-20230524173253108.png" srcset="/img/loading.gif" lazyload alt="image-20230524173253108"></p>
 
                 
               </div>
