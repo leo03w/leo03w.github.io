@@ -190,9 +190,9 @@
     
     <tags>
       
-      <tag>安装配置</tag>
-      
       <tag>CentOS</tag>
+      
+      <tag>安装配置</tag>
       
       <tag>Ubuntu</tag>
       
@@ -360,9 +360,9 @@
     
     <tags>
       
-      <tag>安装配置</tag>
-      
       <tag>CentOS</tag>
+      
+      <tag>安装配置</tag>
       
       <tag>Hadoop</tag>
       
@@ -404,37 +404,6 @@
   
   
   <entry>
-    <title>Python_pip换源</title>
-    <link href="/2022/09/23/Python_pip%E6%8D%A2%E6%BA%90/"/>
-    <url>/2022/09/23/Python_pip%E6%8D%A2%E6%BA%90/</url>
-    
-    <content type="html"><![CDATA[<h1 id="Python-pip换源"><a href="#Python-pip换源" class="headerlink" title="Python_pip换源"></a>Python_pip换源</h1><h3 id="pip国内的一些镜像"><a href="#pip国内的一些镜像" class="headerlink" title="pip国内的一些镜像"></a>pip国内的一些镜像</h3><p>阿里云</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/pypi/</span>simple/<br></code></pre></td></tr></table></figure><p>中国科技大学</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>pypi.mirrors.ustc.edu.cn<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><p>豆瓣(douban)</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>pypi.douban.com<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><p>清华大学</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>pypi.tuna.tsinghua.edu.cn<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><h2 id="linux"><a href="#linux" class="headerlink" title="linux:"></a>linux:</h2><p>修改 ~&#x2F;.pip&#x2F;pip.conf (没有就创建一个)， 内容如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[global]<br>index-url = [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple)<br></code></pre></td></tr></table></figure><h2 id="windows"><a href="#windows" class="headerlink" title="windows:"></a>windows:</h2><p>直接在user目录中创建一个pip目录，如：C:\Users\leo\pip，在pip 目录下新建文件pip.ini，内容如下</p><p>或者：win+R 打开用户目录%HOMEPATH%，在此目录下创建 pip 文件夹，在 pip 目录下创建 pip.ini 文件, 内容如下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">[global]<br><span class="hljs-built_in">timeout</span> = 6000<br>index-url = [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple)<br>trusted-host = [pypi.tuna.tsinghua.edu.cn](http://pypi.tuna.tsinghua.edu.cn/)<br></code></pre></td></tr></table></figure><h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install --upgrade pip wheels setuptools<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    <categories>
-      
-      <category>环境配置</category>
-      
-      <category>换源</category>
-      
-      <category>Python</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>配置</tag>
-      
-      <tag>Python</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Jupyter配置</title>
     <link href="/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/"/>
     <url>/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/</url>
@@ -458,6 +427,37 @@
       <tag>Python</tag>
       
       <tag>Jupyter</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Python_pip换源</title>
+    <link href="/2022/09/23/Python_pip%E6%8D%A2%E6%BA%90/"/>
+    <url>/2022/09/23/Python_pip%E6%8D%A2%E6%BA%90/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Python-pip换源"><a href="#Python-pip换源" class="headerlink" title="Python_pip换源"></a>Python_pip换源</h1><h3 id="pip国内的一些镜像"><a href="#pip国内的一些镜像" class="headerlink" title="pip国内的一些镜像"></a>pip国内的一些镜像</h3><p>阿里云</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//mi</span>rrors.aliyun.com<span class="hljs-regexp">/pypi/</span>simple/<br></code></pre></td></tr></table></figure><p>中国科技大学</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>pypi.mirrors.ustc.edu.cn<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><p>豆瓣(douban)</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>pypi.douban.com<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><p>清华大学</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>pypi.tuna.tsinghua.edu.cn<span class="hljs-regexp">/simple/</span><br></code></pre></td></tr></table></figure><h2 id="linux"><a href="#linux" class="headerlink" title="linux:"></a>linux:</h2><p>修改 ~&#x2F;.pip&#x2F;pip.conf (没有就创建一个)， 内容如下：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">[global]<br>index-url = [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple)<br></code></pre></td></tr></table></figure><h2 id="windows"><a href="#windows" class="headerlink" title="windows:"></a>windows:</h2><p>直接在user目录中创建一个pip目录，如：C:\Users\leo\pip，在pip 目录下新建文件pip.ini，内容如下</p><p>或者：win+R 打开用户目录%HOMEPATH%，在此目录下创建 pip 文件夹，在 pip 目录下创建 pip.ini 文件, 内容如下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">[global]<br><span class="hljs-built_in">timeout</span> = 6000<br>index-url = [https://pypi.tuna.tsinghua.edu.cn/simple](https://pypi.tuna.tsinghua.edu.cn/simple)<br>trusted-host = [pypi.tuna.tsinghua.edu.cn](http://pypi.tuna.tsinghua.edu.cn/)<br></code></pre></td></tr></table></figure><h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install --upgrade pip wheels setuptools<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>环境配置</category>
+      
+      <category>换源</category>
+      
+      <category>Python</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>配置</tag>
+      
+      <tag>Python</tag>
       
     </tags>
     
@@ -535,9 +535,9 @@
     
     <categories>
       
-      <category>工具</category>
-      
       <category>环境配置</category>
+      
+      <category>工具</category>
       
     </categories>
     
@@ -639,7 +639,7 @@
   
   
   <entry>
-    <title>Leo profile</title>
+    <title>读书</title>
     <link href="/"/>
     <url>/</url>
     
@@ -650,7 +650,7 @@
   
   
   <entry>
-    <title>读书</title>
+    <title>Leo profile</title>
     <link href="/"/>
     <url>/</url>
     
