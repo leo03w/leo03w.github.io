@@ -190,9 +190,9 @@
       
         <tags>
             
-            <tag> CentOS </tag>
-            
             <tag> 安装配置 </tag>
+            
+            <tag> CentOS </tag>
             
             <tag> Ubuntu </tag>
             
@@ -360,9 +360,9 @@
       
         <tags>
             
-            <tag> CentOS </tag>
-            
             <tag> 安装配置 </tag>
+            
+            <tag> CentOS </tag>
             
             <tag> Hadoop </tag>
             
@@ -404,37 +404,6 @@
     
     
     <entry>
-      <title>Jupyter配置</title>
-      <link href="/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/"/>
-      <url>/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Jupyter配置"><a href="#Jupyter配置" class="headerlink" title="Jupyter配置"></a>Jupyter配置</h1><h2 id="Termux下"><a href="#Termux下" class="headerlink" title="Termux下"></a>Termux下</h2><p>安装 <code>libzmq</code></p><blockquote><p>之前报错就是因为没有libzmq，pip安装的时候没法编译</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install libzmq<br></code></pre></td></tr></table></figure><h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter<br></code></pre></td></tr></table></figure><h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jupyter notebook --generate-config<br></code></pre></td></tr></table></figure><p>默认生成在 <code>~/.jupytercd ~/.jupyter</code> </p><h2 id="使用-ipython-生成密匙"><a href="#使用-ipython-生成密匙" class="headerlink" title="使用 ipython 生成密匙"></a>使用 <code>ipython</code> 生成密匙</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd<br>passwd()<br></code></pre></td></tr></table></figure><p>按提示输入密码，复制生成的字符串(例如’sha1:aabbcc00’)</p><h2 id="编辑-jupyter-notebook-config-py-添加刚刚生成的密匙"><a href="#编辑-jupyter-notebook-config-py-添加刚刚生成的密匙" class="headerlink" title="编辑 jupyter_notebook_config.py 添加刚刚生成的密匙"></a>编辑 <code>jupyter_notebook_config.py</code> 添加刚刚生成的密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">c.NotebookApp.password = <span class="hljs-string">&#x27;sha1:aabbcc00&#x27;</span><br><span class="hljs-comment"># 允许任何ip访问</span><br>c.NotebookApp.ip=<span class="hljs-string">&#x27;*&#x27;</span> <br><span class="hljs-comment"># 禁用自启动浏览器</span><br>c.NotebookApp.open_browser = False <br><span class="hljs-comment"># 设置端口</span><br>c.NotebookApp.port =8888 <br><br></code></pre></td></tr></table></figure><h3 id="（以下为个人配置）设置别名"><a href="#（以下为个人配置）设置别名" class="headerlink" title="（以下为个人配置）设置别名"></a>（以下为个人配置）设置别名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> ~/.jupyter/leo<br>vi ~/.zshrc<br><span class="hljs-built_in">alias</span> myjupyter=<span class="hljs-string">&quot;jupyter notebook --notebook-dir /data/data/com.termux/files/home/.jupyter/leo &amp; sleep 1; termux-open http://127.0.0.1:8880”</span><br></code></pre></td></tr></table></figure><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter_contrib_nbextensions &amp;&amp; jupyter contrib nbextension install<br></code></pre></td></tr></table></figure><p><img src="/img/Jupyter_plugins.png" alt="plugins"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 环境配置 </category>
-          
-          <category> Python </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 安装配置 </tag>
-            
-            <tag> Python </tag>
-            
-            <tag> Jupyter </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Python_pip换源</title>
       <link href="/2022/09/23/Python_pip%E6%8D%A2%E6%BA%90/"/>
       <url>/2022/09/23/Python_pip%E6%8D%A2%E6%BA%90/</url>
@@ -458,6 +427,37 @@
             <tag> 配置 </tag>
             
             <tag> Python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Jupyter配置</title>
+      <link href="/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/"/>
+      <url>/2022/09/23/Jupyter%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Jupyter配置"><a href="#Jupyter配置" class="headerlink" title="Jupyter配置"></a>Jupyter配置</h1><h2 id="Termux下"><a href="#Termux下" class="headerlink" title="Termux下"></a>Termux下</h2><p>安装 <code>libzmq</code></p><blockquote><p>之前报错就是因为没有libzmq，pip安装的时候没法编译</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install libzmq<br></code></pre></td></tr></table></figure><h2 id="安装jupyter"><a href="#安装jupyter" class="headerlink" title="安装jupyter"></a>安装jupyter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter<br></code></pre></td></tr></table></figure><h2 id="生成配置文件"><a href="#生成配置文件" class="headerlink" title="生成配置文件"></a>生成配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">jupyter notebook --generate-config<br></code></pre></td></tr></table></figure><p>默认生成在 <code>~/.jupytercd ~/.jupyter</code> </p><h2 id="使用-ipython-生成密匙"><a href="#使用-ipython-生成密匙" class="headerlink" title="使用 ipython 生成密匙"></a>使用 <code>ipython</code> 生成密匙</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> notebook.auth <span class="hljs-keyword">import</span> passwd<br>passwd()<br></code></pre></td></tr></table></figure><p>按提示输入密码，复制生成的字符串(例如’sha1:aabbcc00’)</p><h2 id="编辑-jupyter-notebook-config-py-添加刚刚生成的密匙"><a href="#编辑-jupyter-notebook-config-py-添加刚刚生成的密匙" class="headerlink" title="编辑 jupyter_notebook_config.py 添加刚刚生成的密匙"></a>编辑 <code>jupyter_notebook_config.py</code> 添加刚刚生成的密匙</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">c.NotebookApp.password = <span class="hljs-string">&#x27;sha1:aabbcc00&#x27;</span><br><span class="hljs-comment"># 允许任何ip访问</span><br>c.NotebookApp.ip=<span class="hljs-string">&#x27;*&#x27;</span> <br><span class="hljs-comment"># 禁用自启动浏览器</span><br>c.NotebookApp.open_browser = False <br><span class="hljs-comment"># 设置端口</span><br>c.NotebookApp.port =8888 <br><br></code></pre></td></tr></table></figure><h3 id="（以下为个人配置）设置别名"><a href="#（以下为个人配置）设置别名" class="headerlink" title="（以下为个人配置）设置别名"></a>（以下为个人配置）设置别名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> ~/.jupyter/leo<br>vi ~/.zshrc<br><span class="hljs-built_in">alias</span> myjupyter=<span class="hljs-string">&quot;jupyter notebook --notebook-dir /data/data/com.termux/files/home/.jupyter/leo &amp; sleep 1; termux-open http://127.0.0.1:8880”</span><br></code></pre></td></tr></table></figure><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter_contrib_nbextensions &amp;&amp; jupyter contrib nbextension install<br></code></pre></td></tr></table></figure><p><img src="/img/Jupyter_plugins.png" alt="plugins"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境配置 </category>
+          
+          <category> Python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安装配置 </tag>
+            
+            <tag> Python </tag>
+            
+            <tag> Jupyter </tag>
             
         </tags>
       
@@ -535,9 +535,9 @@
       
       <categories>
           
-          <category> 环境配置 </category>
-          
           <category> 工具 </category>
+          
+          <category> 环境配置 </category>
           
       </categories>
       
